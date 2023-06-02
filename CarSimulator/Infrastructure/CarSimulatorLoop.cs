@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarSimulator
+namespace CarSimulator.Infrastructure
 {
-    public class Application
+    internal class CarSimulation
     {
-        public void Run()
-        {
-
-
-        }
     }
 }
