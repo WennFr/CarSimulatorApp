@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CarSimulator.Infrastructure.Menus;
 using CarSimulator.Models;
-using DataLogicLibrary.Entities;
 using ValidationServiceLibrary.Services;
 
 namespace CarSimulator.Simulation
@@ -18,15 +17,10 @@ namespace CarSimulator.Simulation
         }
 
         private readonly IValidationService _validationService;
-
-
         public void Execute()
         {
             var car = new Car();
             var driver = new Driver();
-
-          
-
 
             while (true)
             {
@@ -34,12 +28,14 @@ namespace CarSimulator.Simulation
                 Menu.DisplaySelectionMenu();
 
                 var userInput = _validationService.ValidateMenuSelection(7);
-
-
                 Menu.DisplaySelectedAction(userInput);
 
                 if (userInput == 7)
                     break;
+              
+                
+
+
 
                 Console.WriteLine(Convert.ToString(car.CardinalDirection));
                 Console.WriteLine(Convert.ToString(driver.EnergyValue));
