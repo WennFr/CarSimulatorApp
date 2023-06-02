@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarSimulator.Infrastructure.Enums
+namespace DataLogicLibrary.Infrastructure.Enums
 {
-
-    public enum Direction
+    public enum CardinalDirection
     {
         North = 0,
         East = 1,

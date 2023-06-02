@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataLogicLibrary.Infrastructure.Enums;
 
 namespace DataLogicLibrary.DirectionStrategies
 {
@@ -15,9 +16,9 @@ namespace DataLogicLibrary.DirectionStrategies
             _strategy = strategy;
         }
 
-        public IAreaPerimeter ExecuteStrategy(double x, double y, double z)
+        public CardinalDirection ExecuteStrategy(CardinalDirection currentCardinalDirection)
         {
-            return _strategy.Execute(x, y, z);
+            return 0.0;
         }
 
     }

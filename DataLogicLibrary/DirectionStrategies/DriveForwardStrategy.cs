@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLogicLibrary.DirectionStrategies
 {
-    internal class DriveForwardStrategy
+    public class DriveForwardStrategy
     {
     }
 }

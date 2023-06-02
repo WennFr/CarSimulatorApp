@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataLogicLibrary\DataLogicLibrary.csproj" />
     <ProjectReference Include="..\ValidationServiceLibrary\ValidationServiceLibrary.csproj" />
   </ItemGroup>
 
