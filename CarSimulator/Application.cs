@@ -12,6 +12,9 @@ namespace CarSimulator
     {
         public void Run()
         {
+
+
+
             var carSimulation = new CarSimulationController();
             carSimulation.Execute();
 

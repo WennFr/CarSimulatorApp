@@ -18,10 +18,9 @@ namespace CarSimulator.Infrastructure.Menus
             Console.WriteLine("(6) Refuel the car");
             Console.WriteLine($"(7) Exit {Environment.NewLine}");
 
-            Console.WriteLine($"What would you like to do? {Environment.NewLine}");
+            
 
 
-            Console.Write("Choice: ");
         }
 
         public static void DisplaySelectedAction(int input)
