@@ -40,7 +40,7 @@ namespace CarSimulator.Infrastructure.Menus
                     Console.WriteLine("Car reverses");
                     break;
                 case 5:
-                    Console.WriteLine("Car takes a rest");
+                    Console.WriteLine("Driver takes a rest");
                     break;
                 case 6:
                     Console.WriteLine("Car refuels");

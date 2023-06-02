@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSimulator", "CarSimulator\CarSimulator.csproj", "{CDE01B57-0F21-4567-BBE6-76DF3AFFD0E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationServiceLibrary", "ValidationServiceLibrary\ValidationServiceLibrary.csproj", "{C58A5B56-E318-4A0A-9EE4-33491566F441}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidationServiceLibrary", "ValidationServiceLibrary\ValidationServiceLibrary.csproj", "{C58A5B56-E318-4A0A-9EE4-33491566F441}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLogicLibrary", "DataLogicLibrary\DataLogicLibrary.csproj", "{D4FCAABE-5F8A-4B6E-99A6-7727105DFCA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C58A5B56-E318-4A0A-9EE4-33491566F441}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C58A5B56-E318-4A0A-9EE4-33491566F441}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C58A5B56-E318-4A0A-9EE4-33491566F441}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4FCAABE-5F8A-4B6E-99A6-7727105DFCA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4FCAABE-5F8A-4B6E-99A6-7727105DFCA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4FCAABE-5F8A-4B6E-99A6-7727105DFCA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4FCAABE-5F8A-4B6E-99A6-7727105DFCA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
