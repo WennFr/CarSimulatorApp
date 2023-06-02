@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarSimulator.Infrastructure.Menus;
+using CarSimulator.Models;
 
 namespace CarSimulator.Simulation
 {
@@ -18,11 +19,13 @@ namespace CarSimulator.Simulation
             {
                 Menu.DisplaySelectionMenu();
 
+                var status = new Status();
 
 
 
+                Console.WriteLine(status.Car.GasValue);
 
-
+                Console.ReadKey();
             }
 
         }

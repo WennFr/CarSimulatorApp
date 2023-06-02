@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CarSimulator.Models
 {
-    internal class Driver
+    public class Driver
     {
+        public int EnergyValue { get; set; }
     }
 }

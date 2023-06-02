@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CarSimulator.Infrastructure.Enums;
 
 namespace CarSimulator.Models
 {
-    public class Car
+    public class Status
     {
-        public Direction Direction { get; set; }
-        public int GasValue { get; set; }
+        public Car Car { get; set; }
+        public Driver Driver { get; set; }
 
     }
 }

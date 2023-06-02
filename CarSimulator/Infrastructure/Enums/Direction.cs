@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CarSimulator.Infrastructure.Enums
 {
-    internal class Direction
+
+    public enum Direction
     {
+        North = 0,
+        East = 1,
+        South = 2,
+        West = 3
     }
+
 }
