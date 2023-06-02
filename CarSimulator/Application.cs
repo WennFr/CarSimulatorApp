@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarSimulator.Infrastructure;
+using CarSimulator.Simulation;
 
 namespace CarSimulator
 {
@@ -11,8 +12,8 @@ namespace CarSimulator
     {
         public void Run()
         {
-            var carSimulatorLoop = new CarSimulatorLoop();
-            carSimulatorLoop.Start();
+            var carSimulation = new CarSimulationController();
+            carSimulation.Execute();
 
         }
     }

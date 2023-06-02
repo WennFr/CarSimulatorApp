@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarSimulator.Infrastructure.Menus;
 
-namespace CarSimulator.Infrastructure
+namespace CarSimulator.Simulation
 {
-    public class CarSimulatorLoop
+    public class CarSimulationController
     {
 
-        public void Start()
+        public void Execute()
         {
             var exit = false;
 

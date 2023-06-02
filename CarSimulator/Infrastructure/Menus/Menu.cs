@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarSimulator.Infrastructure
+namespace CarSimulator.Infrastructure.Menus
 {
     public static class Menu
     {
