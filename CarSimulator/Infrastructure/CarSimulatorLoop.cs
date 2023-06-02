@@ -11,7 +11,18 @@ namespace CarSimulator.Infrastructure
 
         public void Start()
         {
+            var exit = false;
 
+            while (!exit)
+            {
+                Menu.DisplaySelectionMenu();
+
+
+
+
+
+
+            }
 
         }
 
