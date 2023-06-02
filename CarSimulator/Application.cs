@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Xml;
 using CarSimulator.Infrastructure;
 using CarSimulator.Simulation;
+using Microsoft.Extensions.DependencyInjection;
+using ValidationServiceLibrary.Services;
 
 namespace CarSimulator
 {
@@ -14,12 +16,11 @@ namespace CarSimulator
         public void Run()
         {
             var services = new ServiceCollection();
+            services.AddTransient<IValidationService, ValidationService>();
+            var serviceProvider = services.BuildServiceProvider();
+            var validationService = serviceProvider.GetService<IValidationService>();
 
-            // Register the interface and its implementation as a transient service
-            services.AddTransient<IMyInterface, MyImplementation>();
-
-
-            var carSimulation = new CarSimulationController();
+            var carSimulation = new CarSimulation(validationService);
             carSimulation.Execute();
 
         }

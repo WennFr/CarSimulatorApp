@@ -46,10 +46,7 @@ namespace CarSimulator.Infrastructure.Menus
                     Console.WriteLine("Car refuels");
                     break;
                 case 7:
-                    Console.WriteLine("Quitting simulation");
-                    break;
-                default:
-                    Console.WriteLine("Invalid choice. Please try again.");
+                    Console.WriteLine("Aborted simulation");
                     break;
             }
 
