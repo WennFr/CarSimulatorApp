@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace CarSimulator.Infrastructure
 {
-    public class CarSimulatorLoop
+    public static class Menu
     {
 
-        public void Start()
-        {
 
-
-        }
 
     }
 }
