@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataLogicLibrary.DirectionStrategies.Interfaces;
 using DataLogicLibrary.Infrastructure.Enums;
 
 namespace DataLogicLibrary.DirectionStrategies
@@ -16,9 +17,9 @@ namespace DataLogicLibrary.DirectionStrategies
             _strategy = strategy;
         }
 
-        public CardinalDirection ExecuteStrategy(CardinalDirection currentCardinalDirection)
+        public CardinalDirection ExecuteStrategy(CardinalDirection currentCardinalDirection, MovementAction movementAction)
         {
-            return 0.0;
+            return _strategy.Execute(currentCardinalDirection, movementAction);
         }
 
     }

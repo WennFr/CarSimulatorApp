@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLogicLibrary.DirectionStrategies
+namespace DataLogicLibrary.DirectionStrategies.Interfaces
 {
-    public interface IDirectionStrategy
+    public interface IDirectionContext
     {
     }
 }
