@@ -14,16 +14,27 @@ namespace CarSimulator.Simulation
         public void Execute()
         {
             var exit = false;
+            var car = new Car();
+            var driver = new Driver();
+
+            var status = new Status
+            {
+                Car = car,
+                Driver = driver,
+
+            };
+
 
             while (!exit)
             {
                 Menu.DisplaySelectionMenu();
 
-                var status = new Status();
+                var userInput = Convert.ToInt32(Console.ReadLine());
+
+                Console.Clear();
+                Menu.DisplaySelectedAction(userInput);
 
 
-
-                Console.WriteLine(status.Car.GasValue);
 
                 Console.ReadKey();
             }
