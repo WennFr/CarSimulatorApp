@@ -17,6 +17,5 @@ namespace DataLogicLibrary.DirectionStrategies
             return direction;
         }
 
-
     }
 }

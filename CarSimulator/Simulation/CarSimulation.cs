@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarSimulator.Infrastructure.Menus;
 using CarSimulator.Models;
+using DataLogicLibrary.Entities;
 using ValidationServiceLibrary.Services;
 
 namespace CarSimulator.Simulation
@@ -24,11 +25,7 @@ namespace CarSimulator.Simulation
             var car = new Car();
             var driver = new Driver();
 
-            var status = new Status
-            {
-                Car = car,
-                Driver = driver,
-            };
+          
 
 
             while (true)
@@ -44,9 +41,9 @@ namespace CarSimulator.Simulation
                 if (userInput == 7)
                     break;
 
-                Console.WriteLine(Convert.ToString(status.Car.Direction));
-                Console.WriteLine(Convert.ToString(status.Driver.EnergyValue));
-                Console.WriteLine(Convert.ToString(status.Car.GasValue));
+                Console.WriteLine(Convert.ToString(car.CardinalDirection));
+                Console.WriteLine(Convert.ToString(driver.EnergyValue));
+                Console.WriteLine(Convert.ToString(car.GasValue));
 
                 Console.ReadLine();
 
