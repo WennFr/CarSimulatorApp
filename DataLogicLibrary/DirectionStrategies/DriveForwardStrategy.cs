@@ -13,9 +13,9 @@ namespace DataLogicLibrary.DirectionStrategies
 
         public CardinalDirection Execute(CardinalDirection currentCardinalDirection, MovementAction movementAction)
         {
-            var direction = currentCardinalDirection;
+            var newDirection = currentCardinalDirection;
 
-            return direction;
+            return newDirection;
         }
 
     }
