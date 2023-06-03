@@ -9,7 +9,7 @@ using DataLogicLibrary.Infrastructure.Enums;
 
 namespace DataLogicLibrary.Services
 {
-    public class SimulationLogicService
+    public class SimulationLogicService : ISimulationLogicService
     {
 
         public SimulationLogicService(IDirectionContext directionContext, IDirectionStrategy turnLeftStrategy,
@@ -32,7 +32,7 @@ namespace DataLogicLibrary.Services
 
         public StatusDTO PerformAction(int userInput, StatusDTO currentStatus)
         {
-            MovementAction movementAction;
+            MovementAction movementAction = 0;
 
             switch (userInput)
             {
