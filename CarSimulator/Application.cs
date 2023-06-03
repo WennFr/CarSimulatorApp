@@ -25,17 +25,10 @@ namespace CarSimulator
             services.AddTransient<ISimulationLogicService, SimulationLogicService>();
             services.AddTransient<IDirectionContext, DirectionContext>();
 
-
-            //services.AddTransient<IDirectionStrategy, TurnLeftStrategy>();
-            //services.AddTransient<IDirectionStrategy, TurnRightStrategy>();
-            //services.AddTransient<IDirectionStrategy, DriveForwardStrategy>();
-            //services.AddTransient<IDirectionStrategy, ReverseStrategy>();
-
             services.AddTransient<TurnLeftStrategy>();
             services.AddTransient<TurnRightStrategy>();
             services.AddTransient<DriveForwardStrategy>();
             services.AddTransient<ReverseStrategy>();
-
 
             services.AddTransient<SimulationLogicService.DirectionStrategyResolver>(serviceProvider => movementAction =>
             {
@@ -54,13 +47,9 @@ namespace CarSimulator
                 }
             });
 
-
-
             var serviceProvider = services.BuildServiceProvider();
             var validationService = serviceProvider.GetService<IValidationService>();
             var simulationLogicService = serviceProvider.GetService<ISimulationLogicService>();
-
-            //var simulationLogicService = new SimulationLogicService(directionContext,directionStrategyResolver);
 
             var carSimulation = new CarSimulation(validationService, simulationLogicService);
             carSimulation.Execute();
