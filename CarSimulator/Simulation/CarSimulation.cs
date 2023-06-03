@@ -48,13 +48,13 @@ namespace CarSimulator.Simulation
                 currentStatus = _simulationLogicService.PerformAction(userInput, currentStatus);
 
                 car.CardinalDirection = currentStatus.CardinalDirection;
-                driver.EnergyValue = currentStatus.EnergyValue;
                 car.GasValue = currentStatus.GasValue;
+                driver.EnergyValue = currentStatus.EnergyValue;
 
 
                 Console.WriteLine($"Direction: {car.CardinalDirection}");
-                Console.WriteLine(Convert.ToString(driver.EnergyValue));
-                Console.WriteLine(Convert.ToString(car.GasValue));
+                Console.WriteLine($"Gas: {car.GasValue}/20");
+                Console.WriteLine($"Drivers energy:{driver.EnergyValue}/20");
 
                 Console.ReadLine();
 
