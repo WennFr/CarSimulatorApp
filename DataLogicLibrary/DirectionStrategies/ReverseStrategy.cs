@@ -12,9 +12,27 @@ namespace DataLogicLibrary.DirectionStrategies
     {
         public CardinalDirection Execute(CardinalDirection currentCardinalDirection, MovementAction movementAction)
         {
-            var direction = currentCardinalDirection;
+            CardinalDirection oppositeDirection;
 
-            return direction;
+            switch (currentCardinalDirection)
+            {
+                case CardinalDirection.North:
+                    oppositeDirection = CardinalDirection.South;
+                    break;
+                case CardinalDirection.South:
+                    oppositeDirection = CardinalDirection.North;
+                    break;
+                case CardinalDirection.East:
+                    oppositeDirection = CardinalDirection.West;
+                    break;
+                case CardinalDirection.West:
+                    oppositeDirection = CardinalDirection.East;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(currentCardinalDirection), "Error: currentCardinalDirection not set");
+            }
+
+            return oppositeDirection;
         }
 
     }
