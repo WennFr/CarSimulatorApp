@@ -11,16 +11,15 @@ namespace DataLogicLibrary.Services
 {
     public class SimulationLogicService : ISimulationLogicService
     {
+        public delegate IDirectionStrategy DirectionStrategyResolver(MovementAction movementAction);
 
-        public SimulationLogicService(IDirectionContext directionContext, IDirectionStrategy turnLeftStrategy,
-            IDirectionStrategy turnRightStrategy, IDirectionStrategy driveForwardStrategy,
-            IDirectionStrategy reverseStrategy )
+        public SimulationLogicService(IDirectionContext directionContext, DirectionStrategyResolver directionStrategyResolver)
         {
             _directionContext = directionContext;
-            _turnLeftStrategy = turnLeftStrategy;
-            _turnRightStrategy = turnRightStrategy;
-            _driveForwardStrategy = driveForwardStrategy;
-            _reverseStrategy = reverseStrategy;
+            _turnLeftStrategy = directionStrategyResolver(MovementAction.Left);
+            _turnRightStrategy = directionStrategyResolver(MovementAction.Right);
+            _driveForwardStrategy = directionStrategyResolver(MovementAction.Forward);
+            _reverseStrategy = directionStrategyResolver(MovementAction.Backward);
         }
 
         private readonly IDirectionContext _directionContext;
