@@ -57,8 +57,10 @@ namespace DataLogicLibrary.Services
                     break;
 
                 case 5:
+                    currentStatus.EnergyValue = 20;
                     return currentStatus;
                 case 6:
+                    currentStatus.GasValue = 20;
                     return currentStatus;
                
             }

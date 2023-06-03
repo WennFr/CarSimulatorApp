@@ -21,7 +21,11 @@ namespace CarSimulator
             var services = new ServiceCollection();
             services.AddTransient<IValidationService, ValidationService>();
             services.AddTransient<ISimulationLogicService, SimulationLogicService>();
-        
+            services.AddTransient<IDirectionContext, DirectionContext>();
+            services.AddTransient<IDirectionStrategy, TurnLeftStrategy>();
+            services.AddTransient<IDirectionStrategy, TurnRightStrategy>();
+            services.AddTransient<IDirectionStrategy, DriveForwardStrategy>();
+            services.AddTransient<IDirectionStrategy, ReverseStrategy>();
 
 
 

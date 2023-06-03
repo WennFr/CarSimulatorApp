@@ -52,7 +52,7 @@ namespace CarSimulator.Simulation
                 car.GasValue = currentStatus.GasValue;
 
 
-                Console.WriteLine(Convert.ToString(car.CardinalDirection));
+                Console.WriteLine($"Direction: {car.CardinalDirection}");
                 Console.WriteLine(Convert.ToString(driver.EnergyValue));
                 Console.WriteLine(Convert.ToString(car.GasValue));
 

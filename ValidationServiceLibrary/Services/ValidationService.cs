@@ -14,11 +14,11 @@ namespace ValidationServiceLibrary.Services
             Console.WriteLine($"What would you like to do? {Environment.NewLine}");
             while (true)
             {
-                Console.Write(">");
+                Console.Write($">");
                 if (int.TryParse(Console.ReadLine(), out intSelection) && intSelection >= 0 && intSelection <= selectionMenuMaxLimit)
                     return intSelection;
 
-                Console.WriteLine("Choose between the available menu numbers");
+                Console.WriteLine($"{Environment.NewLine}Choose between the available menu numbers{Environment.NewLine}");
             }
         }
     }
