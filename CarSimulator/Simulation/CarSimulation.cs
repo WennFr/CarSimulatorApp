@@ -51,14 +51,21 @@ namespace CarSimulator.Simulation
                 car.GasValue = currentStatus.GasValue;
                 driver.EnergyValue = currentStatus.EnergyValue;
 
-
-                Console.WriteLine($"Direction: {car.CardinalDirection}");
-                Console.WriteLine($"Gas: {car.GasValue}/20");
-                Console.WriteLine($"Drivers energy:{driver.EnergyValue}/20");
-
-                Console.ReadLine();
+                StatusPrompt(car, driver);
 
             }
+
+        }
+
+
+        public void StatusPrompt(Car car, Driver driver)
+        {
+
+            Console.WriteLine($"Direction: {car.CardinalDirection}");
+            Console.WriteLine($"Gas: {car.GasValue}/20");
+            Console.WriteLine($"Drivers energy: {driver.EnergyValue}/20 {Environment.NewLine}");
+            Console.Write("Press any key to continue");
+            Console.ReadLine();
 
         }
 
