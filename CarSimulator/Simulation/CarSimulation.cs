@@ -14,14 +14,16 @@ namespace CarSimulator.Simulation
 {
     public class CarSimulation
     {
-        public CarSimulation(IValidationService validationService, ISimulationLogicService simulationLogicService)
+        public CarSimulation(IValidationService validationService, ISimulationLogicService simulationLogicService, IColorService colorService)
         {
             _validationService = validationService;
             _simulationLogicService = simulationLogicService;
+            _colorService = colorService;
         }
 
         private readonly IValidationService _validationService;
         private readonly ISimulationLogicService _simulationLogicService;
+        private readonly IColorService _colorService;
 
         public void Execute()
         {
@@ -53,8 +55,6 @@ namespace CarSimulator.Simulation
                 currentStatus = _simulationLogicService.UpdateStatusValues(userInput, currentStatus);
                 currentStatus = _simulationLogicService.PerformAction(userInput, currentStatus);
 
-              
-
             }
 
         }
@@ -63,9 +63,9 @@ namespace CarSimulator.Simulation
         public void StatusPrompt(Car car, Driver driver)
         {
 
-            Console.WriteLine($"Direction: {car.CardinalDirection}");
-            Console.WriteLine($"Gas: {car.GasValue}/20");
-            Console.WriteLine($"Drivers energy: {driver.EnergyValue}/20 {Environment.NewLine}");
+            _colorService.ConsoleWriteLineWhite($"Direction: {car.CardinalDirection}");
+            _simulationLogicService.ColorStatusTextBasedOnValue($"Gas: {car.GasValue}/20", car.GasValue);
+            _simulationLogicService.ColorStatusTextBasedOnValue($"Drivers energy: {driver.EnergyValue}/20 {Environment.NewLine}", driver.EnergyValue);
 
         }
 

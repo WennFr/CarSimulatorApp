@@ -13,5 +13,7 @@ namespace DataLogicLibrary.Services
 
         StatusDTO UpdateStatusValues(int userInput, StatusDTO currentStatus);
 
+        void ColorStatusTextBasedOnValue(string stringToColor, int currentValue);
+
     }
 }

@@ -14,13 +14,14 @@ namespace DataLogicLibrary.Services
     {
         public delegate IDirectionStrategy DirectionStrategyResolver(MovementAction movementAction);
 
-        public SimulationLogicService(IDirectionContext directionContext, DirectionStrategyResolver directionStrategyResolver)
+        public SimulationLogicService(IDirectionContext directionContext, DirectionStrategyResolver directionStrategyResolver, IColorService colorService)
         {
             _directionContext = directionContext;
             _turnLeftStrategy = directionStrategyResolver(MovementAction.Left);
             _turnRightStrategy = directionStrategyResolver(MovementAction.Right);
             _driveForwardStrategy = directionStrategyResolver(MovementAction.Forward);
             _reverseStrategy = directionStrategyResolver(MovementAction.Backward);
+            _colorService = colorService;
         }
 
         private readonly IDirectionContext _directionContext;
@@ -28,6 +29,7 @@ namespace DataLogicLibrary.Services
         private readonly IDirectionStrategy _turnRightStrategy;
         private readonly IDirectionStrategy _driveForwardStrategy;
         private readonly IDirectionStrategy _reverseStrategy;
+        private readonly IColorService _colorService;
 
 
         public StatusDTO PerformAction(int userInput, StatusDTO currentStatus)
@@ -73,24 +75,36 @@ namespace DataLogicLibrary.Services
 
         public StatusDTO UpdateStatusValues(int userInput, StatusDTO currentStatus)
         {
-           
-                Random random = new Random();
-                int energyDecrease = random.Next(1, 6);
-                int gasDecrease = random.Next(1, 6);
 
-                currentStatus.EnergyValue -= energyDecrease;
-                if (userInput != 5)
-                    currentStatus.GasValue -= gasDecrease;
+            Random random = new Random();
+            int energyDecrease = random.Next(1, 6);
+            int gasDecrease = random.Next(1, 6);
 
-                if (currentStatus.EnergyValue < 0)
-                    currentStatus.EnergyValue = 0;
-                if (currentStatus.GasValue < 0)
-                    currentStatus.GasValue = 0;
+            currentStatus.EnergyValue -= energyDecrease;
+            if (userInput != 5)
+                currentStatus.GasValue -= gasDecrease;
+
+            if (currentStatus.EnergyValue < 0)
+                currentStatus.EnergyValue = 0;
+            if (currentStatus.GasValue < 0)
+                currentStatus.GasValue = 0;
 
             return currentStatus;
 
         }
 
+        public void ColorStatusTextBasedOnValue(string stringToColor, int currentValue)
+        {
+            if (currentValue > 15)
+                _colorService.ConsoleWriteLineGreen(stringToColor);
+
+            else if (currentValue <= 5)
+                _colorService.ConsoleWriteLineRed(stringToColor);
+
+            else
+                _colorService.ConsoleWriteLineWhite(stringToColor);
+
+        }
 
 
     }
