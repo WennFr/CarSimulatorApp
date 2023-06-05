@@ -37,6 +37,11 @@ namespace CarSimulator.Simulation
             while (true)
             {
                 Console.Clear();
+                car.CardinalDirection = currentStatus.CardinalDirection;
+                car.GasValue = currentStatus.GasValue;
+                driver.EnergyValue = currentStatus.EnergyValue;
+                StatusPrompt(car, driver);
+
                 Menu.DisplaySelectionMenu();
                 var userInput = _validationService.ValidateMenuSelection(7);
 
@@ -48,13 +53,7 @@ namespace CarSimulator.Simulation
                 currentStatus = _simulationLogicService.UpdateStatusValues(userInput, currentStatus);
                 currentStatus = _simulationLogicService.PerformAction(userInput, currentStatus);
 
-
-
-                car.CardinalDirection = currentStatus.CardinalDirection;
-                car.GasValue = currentStatus.GasValue;
-                driver.EnergyValue = currentStatus.EnergyValue;
-
-                StatusPrompt(car, driver);
+              
 
             }
 
@@ -67,8 +66,6 @@ namespace CarSimulator.Simulation
             Console.WriteLine($"Direction: {car.CardinalDirection}");
             Console.WriteLine($"Gas: {car.GasValue}/20");
             Console.WriteLine($"Drivers energy: {driver.EnergyValue}/20 {Environment.NewLine}");
-            Console.Write("Press any key to continue");
-            Console.ReadLine();
 
         }
 

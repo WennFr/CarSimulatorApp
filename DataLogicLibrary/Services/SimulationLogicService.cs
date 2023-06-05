@@ -82,7 +82,6 @@ namespace DataLogicLibrary.Services
                 if (userInput != 5)
                     currentStatus.GasValue -= gasDecrease;
 
-
                 if (currentStatus.EnergyValue < 0)
                     currentStatus.EnergyValue = 0;
                 if (currentStatus.GasValue < 0)
