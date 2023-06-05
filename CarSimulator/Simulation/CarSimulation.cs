@@ -47,6 +47,8 @@ namespace CarSimulator.Simulation
 
                 currentStatus = _simulationLogicService.PerformAction(userInput, currentStatus);
 
+
+
                 car.CardinalDirection = currentStatus.CardinalDirection;
                 car.GasValue = currentStatus.GasValue;
                 driver.EnergyValue = currentStatus.EnergyValue;
