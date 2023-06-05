@@ -21,31 +21,9 @@ namespace CarSimulator
         public void Run()
         {
             var services = new ServiceCollection();
-            services.AddTransient<IValidationService, ValidationService>();
-            services.AddTransient<ISimulationLogicService, SimulationLogicService>();
-            services.AddTransient<IDirectionContext, DirectionContext>();
+            var startup = new Startup();
 
-            services.AddTransient<TurnLeftStrategy>();
-            services.AddTransient<TurnRightStrategy>();
-            services.AddTransient<DriveForwardStrategy>();
-            services.AddTransient<ReverseStrategy>();
-
-            services.AddTransient<SimulationLogicService.DirectionStrategyResolver>(serviceProvider => movementAction =>
-            {
-                switch (movementAction)
-                {
-                    case MovementAction.Left:
-                        return serviceProvider.GetService<TurnLeftStrategy>();
-                    case MovementAction.Right:
-                        return serviceProvider.GetService<TurnRightStrategy>();
-                    case MovementAction.Forward:
-                        return serviceProvider.GetService<DriveForwardStrategy>();
-                    case MovementAction.Backward:
-                        return serviceProvider.GetService<ReverseStrategy>();
-                    default:
-                        throw new KeyNotFoundException();
-                }
-            });
+            startup.ConfigureServices(services);
 
             var serviceProvider = services.BuildServiceProvider();
             var validationService = serviceProvider.GetService<IValidationService>();
