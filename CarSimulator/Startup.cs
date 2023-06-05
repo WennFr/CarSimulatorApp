@@ -21,6 +21,7 @@ namespace CarSimulator
             services.AddTransient<ISimulationLogicService, SimulationLogicService>();
             services.AddTransient<IDirectionContext, DirectionContext>();
             services.AddTransient<IColorService, ColorService>();
+            services.AddTransient<IMessageService, MessageService>();
 
             services.AddTransient<TurnLeftStrategy>();
             services.AddTransient<TurnRightStrategy>();

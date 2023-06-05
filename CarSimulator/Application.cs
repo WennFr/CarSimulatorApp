@@ -29,8 +29,9 @@ namespace CarSimulator
             var validationService = serviceProvider.GetService<IValidationService>();
             var simulationLogicService = serviceProvider.GetService<ISimulationLogicService>();
             var colorService = serviceProvider.GetService<IColorService>();
+            var messageService = serviceProvider.GetService<IMessageService>();
 
-            var carSimulation = new CarSimulation(validationService, simulationLogicService, colorService);
+            var carSimulation = new CarSimulation(validationService, simulationLogicService, colorService, messageService);
             carSimulation.Execute();
 
 
