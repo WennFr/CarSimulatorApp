@@ -45,6 +45,7 @@ namespace CarSimulator.Simulation
                 if (userInput == 7)
                     break;
 
+                currentStatus = _simulationLogicService.UpdateStatusValues(userInput, currentStatus);
                 currentStatus = _simulationLogicService.PerformAction(userInput, currentStatus);
 
 

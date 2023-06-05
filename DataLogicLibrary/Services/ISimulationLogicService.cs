@@ -11,5 +11,7 @@ namespace DataLogicLibrary.Services
     {
         StatusDTO PerformAction(int userInput, StatusDTO currentStatus);
 
+        StatusDTO UpdateStatusValues(int userInput, StatusDTO currentStatus);
+
     }
 }
