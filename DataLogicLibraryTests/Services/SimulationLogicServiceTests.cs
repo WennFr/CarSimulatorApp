@@ -80,6 +80,108 @@ namespace DataLogicLibraryTests.Services
             Assert.IsTrue(result.GasValue < 20);
         }
 
+        [TestMethod]
+        public void Gas_Does_Not_Get_Consumed_After_Update_Status_Values_And_User_is_Refueling()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                GasValue = 20,
+                EnergyValue = 20
+            };
+            var userInput = 5;
 
+            // Act
+            var result = sut.UpdateStatusValues(userInput, status);
+
+            // Assert
+            Assert.IsTrue(result.GasValue == 20);
+        }
+
+        [TestMethod]
+        public void CardinalDirection_Remains_Same_When_Driving_Forward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.South,
+                GasValue = 20,
+                EnergyValue = 20
+            };
+            var userInput = 3;
+
+            var expected = CardinalDirection.South;
+
+            // Act
+            var result = sut.PerformAction(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expected, result.CardinalDirection);
+
+        }
+
+        [TestMethod]
+        public void CardinalDirection_Changes_To_East_When_Turning_Left_From_South()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.South,
+                GasValue = 20,
+                EnergyValue = 20
+            };
+            var userInput = 1;
+
+            var expected = CardinalDirection.East;
+
+            // Act
+            var result = sut.PerformAction(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expected, result.CardinalDirection);
+        }
+
+
+        [TestMethod]
+        public void CardinalDirection_Changes_To_West_When_Turning_Right_From_South()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.South,
+                GasValue = 20,
+                EnergyValue = 20
+            };
+            var userInput = 2;
+
+            var expected = CardinalDirection.West;
+
+            // Act
+            var result = sut.PerformAction(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expected, result.CardinalDirection);
+        }
+
+        [TestMethod]
+        public void CardinalDirection_Changes_To_South_When_Reversing_From_North()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.North,
+                GasValue = 20,
+                EnergyValue = 20
+            };
+            var userInput = 4;
+
+            var expected = CardinalDirection.South;
+
+            // Act
+            var result = sut.PerformAction(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expected, result.CardinalDirection);
+        }
     }
 }
