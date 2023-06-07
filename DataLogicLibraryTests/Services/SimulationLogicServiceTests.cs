@@ -60,8 +60,26 @@ namespace DataLogicLibraryTests.Services
 
             // Assert
             Assert.IsTrue(result.EnergyValue < 20);
-
         }
+
+        [TestMethod]
+        public void Gas_Gets_Consumed_After_Update_Status_Values_And_User_Is_Not_Refueling()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                GasValue = 20,
+                EnergyValue = 20
+            };
+            var userInput = 4;
+
+            // Act
+            var result = sut.UpdateStatusValues(userInput, status);
+
+            // Assert
+            Assert.IsTrue(result.GasValue < 20);
+        }
+
 
     }
 }
