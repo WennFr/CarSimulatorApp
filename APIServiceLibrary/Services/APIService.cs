@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using APIServiceLibrary.DTO;
+using System.Net.Http;
 
 namespace APIServiceLibrary.Services
 {
@@ -20,13 +21,22 @@ namespace APIServiceLibrary.Services
 
             var driver = new ResultsDTO();
 
-            HttpResponseMessage response = await client.GetAsync($"https://randomuser.me/api/");
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseBody = await response.Content.ReadAsStringAsync();
-                driver = JsonConvert.DeserializeObject<ResultsDTO>(responseBody);
+                var response = await client.GetAsync("https://randomuser.me/api/").ConfigureAwait(false);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    driver = JsonConvert.DeserializeObject<ResultsDTO>(responseBody);
+                }
             }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occurred during the API request: {ex.Message}");
+            }
+
+         
 
 
             return driver;

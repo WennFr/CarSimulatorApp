@@ -8,13 +8,6 @@ namespace APIServiceLibrary.DTO
 {
     public class ResultsDTO
     {
-        public string Gender { get; set; }
-        public NameDTO Name { get; set; }
-        public LocationDTO Location { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Cell { get; set; }
-
-
+        public List<ResultDTO> Results { get; set; }
     }
 }

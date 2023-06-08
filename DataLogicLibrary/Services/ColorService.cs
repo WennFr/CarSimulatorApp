@@ -49,6 +49,18 @@ namespace DataLogicLibrary.Services
             Console.WriteLine(stringToColor);
             Console.ForegroundColor = ConsoleColor.Gray;
         }
+        public void ConsoleWriteLineCyan(string stringToColor)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(stringToColor);
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
 
+        public void ConsoleWriteLineDarkCyan(string stringToColor)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine(stringToColor);
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
     }
 }

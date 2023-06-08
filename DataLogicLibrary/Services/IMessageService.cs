@@ -9,7 +9,7 @@ namespace DataLogicLibrary.Services
     public interface IMessageService
     {
         void DisplaySelectedAction(int input);
-        void DisplayDriverStatusMessage(int value);
+        void DisplayDriverStatusMessage(int value, string driverName);
         void DisplayCarStatusMessage(int value);
     }
 }

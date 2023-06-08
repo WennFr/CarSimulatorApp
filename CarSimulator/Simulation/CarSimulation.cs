@@ -30,12 +30,19 @@ namespace CarSimulator.Simulation
         private readonly IColorService _colorService;
         private readonly IMessageService _messageService;
 
-        public void Execute()
+        public async Task Execute()
         {
-            var resultDTO = _apiService.GetOneDriver();
+            var resultDTO = await _apiService.GetOneDriver();
 
             var car = new Car();
-            var driver = new Driver();
+            var driver = new Driver
+            {
+                Title = resultDTO.Results[0].Name.Title,
+                First = resultDTO.Results[0].Name.First,
+                Last = resultDTO.Results[0].Name.Last,
+                City = resultDTO.Results[0].Location.City,
+                Country = resultDTO.Results[0].Location.Country,
+            };
             var currentStatus = new StatusDTO
             {
                 CardinalDirection = CardinalDirection.North,
@@ -44,9 +51,9 @@ namespace CarSimulator.Simulation
                 EnergyValue = 20
             };
 
-
-
             var userInput = 0;
+
+            OpeningPrompt(driver);
 
             while (true)
             {
@@ -57,7 +64,7 @@ namespace CarSimulator.Simulation
                 StatusPrompt(car, driver);
 
                 _messageService.DisplayCarStatusMessage(car.GasValue);
-                _messageService.DisplayDriverStatusMessage(driver.EnergyValue);
+                _messageService.DisplayDriverStatusMessage(driver.EnergyValue, driver.First);
                 _messageService.DisplaySelectedAction(userInput);
 
                 Menu.DisplaySelectionMenu();
@@ -71,13 +78,23 @@ namespace CarSimulator.Simulation
             }
         }
 
+        public void OpeningPrompt(Driver driver)
+        {
+            _colorService.ConsoleWriteLineWhite($"Car Simulator! {Environment.NewLine}");
+            _colorService.ConsoleWriteLineCyan($"Your driver: {driver.Title} {driver.First} {driver.Last} {Environment.NewLine}");
+            _colorService.ConsoleWriteLineCyan($"City: {driver.City} {Environment.NewLine}");
+            _colorService.ConsoleWriteLineCyan($"Country: {driver.Country} {Environment.NewLine}");
+
+            _colorService.ConsoleWriteLineDarkCyan("Press enter to start!");
+            Console.ReadKey();
+        }
 
         public void StatusPrompt(Car car, Driver driver)
         {
 
             _colorService.ConsoleWriteLineWhite($"Direction: {car.CardinalDirection}");
             _simulationLogicService.ColorStatusTextBasedOnValue($"Gas: {car.GasValue}/20", car.GasValue);
-            _simulationLogicService.ColorStatusTextBasedOnValue($"Drivers energy: {driver.EnergyValue}/20 {Environment.NewLine}", driver.EnergyValue);
+            _simulationLogicService.ColorStatusTextBasedOnValue($"{driver.First} {driver.Last}'s energy: {driver.EnergyValue}/20 {Environment.NewLine}", driver.EnergyValue);
 
         }
 

@@ -19,7 +19,7 @@ namespace CarSimulator
     public class Application
     {
 
-        public void Run()
+        public async Task Run()
         {
             var services = new ServiceCollection();
             var startup = new Startup();
@@ -34,7 +34,7 @@ namespace CarSimulator
             var messageService = serviceProvider.GetService<IMessageService>();
 
             var carSimulation = new CarSimulation(apiService, validationService, simulationLogicService, colorService, messageService);
-            carSimulation.Execute();
+            await carSimulation.Execute();
 
 
         }

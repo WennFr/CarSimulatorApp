@@ -18,5 +18,9 @@ namespace DataLogicLibrary.Services
 
         void ConsoleWriteLineWhite(string stringToColor);
 
+        void ConsoleWriteLineCyan(string stringToColor);
+
+        void ConsoleWriteLineDarkCyan(string stringToColor);
+
     }
 }

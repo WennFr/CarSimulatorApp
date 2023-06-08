@@ -51,21 +51,21 @@ namespace DataLogicLibrary.Services
 
         }
 
-        public void DisplayDriverStatusMessage(int value)
+        public void DisplayDriverStatusMessage(int value, string driverName)
         {
             if (value <= 10 && value > 5)
             {
-                _colorService.ConsoleWriteLineYellow($"Driver is getting tired, consider taking a rest.{Environment.NewLine}");
+                _colorService.ConsoleWriteLineYellow($"{driverName} is getting tired, consider taking a rest.{Environment.NewLine}");
             }
 
             else if (value <= 5 && value >= 1)
             {
-                _colorService.ConsoleWriteLineRed($"Driver is struggling to stay awake!{Environment.NewLine}");
+                _colorService.ConsoleWriteLineRed($"{driverName} is struggling to stay awake!{Environment.NewLine}");
             }
 
             else if (value == 0)
             {
-                _colorService.ConsoleWriteLineRed($"Driver has fallen asleep!!!! WATCH OUT! {Environment.NewLine}");
+                _colorService.ConsoleWriteLineRed($"{driverName} has fallen asleep!!!! WATCH OUT {Environment.NewLine}");
             }
 
         }
