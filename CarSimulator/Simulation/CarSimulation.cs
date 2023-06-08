@@ -56,7 +56,6 @@ namespace CarSimulator.Simulation
                 Menu.DisplaySelectionMenu();
                 userInput = _validationService.ValidateMenuSelection(7);
 
-
                 if (userInput == 7)
                     break;
 

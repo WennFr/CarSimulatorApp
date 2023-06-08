@@ -23,6 +23,12 @@ namespace DataLogicLibrary.Services
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
+        public void ConsoleWriteLineYellow(string stringToColor)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(stringToColor);
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
         public void ConsoleWriteLineGreen(string stringToColor)
         {
             Console.ForegroundColor = ConsoleColor.Green;

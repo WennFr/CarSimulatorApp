@@ -97,7 +97,7 @@ namespace DataLogicLibrary.Services
                 _colorService.ConsoleWriteLineRed(stringToColor);
 
             else
-                _colorService.ConsoleWriteLineWhite(stringToColor);
+                _colorService.ConsoleWriteLineYellow(stringToColor);
 
         }
 

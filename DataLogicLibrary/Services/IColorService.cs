@@ -8,6 +8,8 @@ namespace DataLogicLibrary.Services
 {
     public interface IColorService
     {
+        void ConsoleWriteLineYellow(string stringToColor);
+
         void ConsoleWriteLineRed(string stringToColor);
 
         void ConsoleWriteRed(string stringToColor);

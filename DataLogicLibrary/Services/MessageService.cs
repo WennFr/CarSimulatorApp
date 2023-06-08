@@ -23,29 +23,30 @@ namespace DataLogicLibrary.Services
             switch (input)
             {
                 case 1:
-                    Console.WriteLine($"{Environment.NewLine}Car turns and drives to the left{Environment.NewLine}");
+                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car turns and drives to the left{Environment.NewLine}");
                     break;
                 case 2:
-                    Console.WriteLine($"{Environment.NewLine}Car turns and drives to the right{Environment.NewLine}");
+                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car turns and drives to the right{Environment.NewLine}");
                     break;
                 case 3:
-                    Console.WriteLine($"{Environment.NewLine}Car drives forward{Environment.NewLine}");
+                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car drives forward{Environment.NewLine}");
                     break;
                 case 4:
-                    Console.WriteLine($"{Environment.NewLine}Car reverses{Environment.NewLine}");
+                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car reverses and drives backwards{Environment.NewLine}");
                     break;
                 case 5:
-                    Console.WriteLine($"{Environment.NewLine}Driver takes a rest{Environment.NewLine}");
+                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Driver takes a rest{Environment.NewLine}");
                     break;
                 case 6:
-                    Console.WriteLine($"{Environment.NewLine}Car refuels{Environment.NewLine}");
+                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car refuels{Environment.NewLine}");
                     break;
                 case 7:
-                    Console.WriteLine($"{Environment.NewLine}Aborted simulation{Environment.NewLine}");
+                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Aborted simulation{Environment.NewLine}");
                     break;
                 default:
                     break;
             }
+
 
         }
 
@@ -53,7 +54,7 @@ namespace DataLogicLibrary.Services
         {
             if (value <= 10 && value > 5)
             {
-                _colorService.ConsoleWriteLineWhite($"Driver is getting tired, consider taking a rest.{Environment.NewLine}");
+                _colorService.ConsoleWriteLineYellow($"Driver is getting tired, consider taking a rest.{Environment.NewLine}");
             }
 
             else if (value <= 5 && value >= 1)
@@ -72,7 +73,7 @@ namespace DataLogicLibrary.Services
         {
             if (value <= 10 && value > 5)
             {
-                _colorService.ConsoleWriteLineWhite($"Car is running out of gas, consider refueling the car.{Environment.NewLine}");
+                _colorService.ConsoleWriteLineYellow($"Car is running out of gas, consider refueling the car.{Environment.NewLine}");
             }
 
             else if (value <= 5 && value >= 1)
