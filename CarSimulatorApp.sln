@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidationServiceLibrary", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLogicLibrary", "DataLogicLibrary\DataLogicLibrary.csproj", "{D4FCAABE-5F8A-4B6E-99A6-7727105DFCA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLogicLibraryTests", "DataLogicLibraryTests\DataLogicLibraryTests.csproj", "{74DF2657-4334-4A37-A86B-EF0A4AFF09AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLogicLibraryTests", "DataLogicLibraryTests\DataLogicLibraryTests.csproj", "{74DF2657-4334-4A37-A86B-EF0A4AFF09AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIServiceLibrary", "APIServiceLibrary\APIServiceLibrary.csproj", "{79A4151F-26E9-4AC5-9F75-CB2B39F1CF41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{74DF2657-4334-4A37-A86B-EF0A4AFF09AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74DF2657-4334-4A37-A86B-EF0A4AFF09AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74DF2657-4334-4A37-A86B-EF0A4AFF09AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79A4151F-26E9-4AC5-9F75-CB2B39F1CF41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79A4151F-26E9-4AC5-9F75-CB2B39F1CF41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79A4151F-26E9-4AC5-9F75-CB2B39F1CF41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79A4151F-26E9-4AC5-9F75-CB2B39F1CF41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
