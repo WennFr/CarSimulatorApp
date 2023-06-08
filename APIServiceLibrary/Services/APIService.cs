@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APIServiceLibrary.Services
 {
-    internal class APIService
+    public class APIService
     {
     }
 }
