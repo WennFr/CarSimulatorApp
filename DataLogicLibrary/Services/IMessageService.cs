@@ -8,7 +8,7 @@ namespace DataLogicLibrary.Services
 {
     public interface IMessageService
     {
-
+        void DisplaySelectedAction(int input);
         void DisplayDriverStatusMessage(int value);
         void DisplayCarStatusMessage(int value);
     }

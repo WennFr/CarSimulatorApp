@@ -38,6 +38,8 @@ namespace CarSimulator.Simulation
                 EnergyValue = 20
             };
 
+            var userInput = 0;
+
             while (true)
             {
                 Console.Clear();
@@ -48,11 +50,11 @@ namespace CarSimulator.Simulation
 
                 _messageService.DisplayCarStatusMessage(car.GasValue);
                 _messageService.DisplayDriverStatusMessage(driver.EnergyValue);
+                _messageService.DisplaySelectedAction(userInput);
 
                 Menu.DisplaySelectionMenu();
-                var userInput = _validationService.ValidateMenuSelection(7);
+                userInput = _validationService.ValidateMenuSelection(7);
 
-                Menu.DisplaySelectedAction(userInput);
 
                 if (userInput == 7)
                     break;

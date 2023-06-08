@@ -16,6 +16,39 @@ namespace DataLogicLibrary.Services
 
         private readonly IColorService _colorService;
 
+
+        public void DisplaySelectedAction(int input)
+        {
+
+            switch (input)
+            {
+                case 1:
+                    Console.WriteLine($"{Environment.NewLine}Car turns and drives to the left{Environment.NewLine}");
+                    break;
+                case 2:
+                    Console.WriteLine($"{Environment.NewLine}Car turns and drives to the right{Environment.NewLine}");
+                    break;
+                case 3:
+                    Console.WriteLine($"{Environment.NewLine}Car drives forward{Environment.NewLine}");
+                    break;
+                case 4:
+                    Console.WriteLine($"{Environment.NewLine}Car reverses{Environment.NewLine}");
+                    break;
+                case 5:
+                    Console.WriteLine($"{Environment.NewLine}Driver takes a rest{Environment.NewLine}");
+                    break;
+                case 6:
+                    Console.WriteLine($"{Environment.NewLine}Car refuels{Environment.NewLine}");
+                    break;
+                case 7:
+                    Console.WriteLine($"{Environment.NewLine}Aborted simulation{Environment.NewLine}");
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
         public void DisplayDriverStatusMessage(int value)
         {
             if (value <= 10 && value > 5)
