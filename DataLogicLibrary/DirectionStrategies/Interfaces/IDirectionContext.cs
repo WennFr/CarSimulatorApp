@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataLogicLibrary.DTO;
 
 namespace DataLogicLibrary.DirectionStrategies.Interfaces
 {
@@ -11,7 +12,7 @@ namespace DataLogicLibrary.DirectionStrategies.Interfaces
     {
         void SetStrategy(IDirectionStrategy strategy);
 
-        CardinalDirection ExecuteStrategy(CardinalDirection currentCardinalDirection, MovementAction movementAction);
+        StatusDTO ExecuteStrategy(StatusDTO currentStatus);
 
     }
 }

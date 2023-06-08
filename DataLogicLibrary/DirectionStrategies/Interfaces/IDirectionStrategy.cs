@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataLogicLibrary.DTO;
 
 namespace DataLogicLibrary.DirectionStrategies.Interfaces
 {
     public interface IDirectionStrategy
     {
-        CardinalDirection Execute(CardinalDirection currentCardinalDirection, MovementAction movementAction);
+        StatusDTO Execute(StatusDTO currentStatus);
     }
 }

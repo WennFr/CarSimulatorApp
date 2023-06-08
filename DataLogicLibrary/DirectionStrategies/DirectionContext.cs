@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLogicLibrary.DirectionStrategies.Interfaces;
+using DataLogicLibrary.DTO;
 using DataLogicLibrary.Infrastructure.Enums;
 
 namespace DataLogicLibrary.DirectionStrategies
@@ -17,9 +18,9 @@ namespace DataLogicLibrary.DirectionStrategies
             _strategy = strategy;
         }
 
-        public CardinalDirection ExecuteStrategy(CardinalDirection currentCardinalDirection, MovementAction movementAction)
+        public StatusDTO ExecuteStrategy(StatusDTO currentStatus)
         {
-            return _strategy.Execute(currentCardinalDirection, movementAction);
+            return _strategy.Execute(currentStatus);
         }
 
     }

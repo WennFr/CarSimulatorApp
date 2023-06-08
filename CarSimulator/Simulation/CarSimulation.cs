@@ -34,6 +34,7 @@ namespace CarSimulator.Simulation
             var currentStatus = new StatusDTO
             {
                 CardinalDirection = CardinalDirection.North,
+                MovementAction = MovementAction.Forward,
                 GasValue = 20,
                 EnergyValue = 20
             };

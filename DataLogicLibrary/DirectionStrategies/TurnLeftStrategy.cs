@@ -5,34 +5,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLogicLibrary.DirectionStrategies.Interfaces;
+using DataLogicLibrary.DTO;
 
 namespace DataLogicLibrary.DirectionStrategies
 {
     public class TurnLeftStrategy : IDirectionStrategy
     {
-        public CardinalDirection Execute(CardinalDirection currentCardinalDirection, MovementAction movementAction)
+        public StatusDTO Execute(StatusDTO currentStatus)
         {
             CardinalDirection newDirection;
 
-            switch (currentCardinalDirection)
+            if (currentStatus.MovementAction != MovementAction.Backward)
             {
-                case CardinalDirection.North:
-                    newDirection = CardinalDirection.West;
-                    break;
-                case CardinalDirection.South:
-                    newDirection = CardinalDirection.East;
-                    break;
-                case CardinalDirection.East:
-                    newDirection = CardinalDirection.North;
-                    break;
-                case CardinalDirection.West:
-                    newDirection = CardinalDirection.South;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(currentCardinalDirection), "Error: currentCardinalDirection not set");
+
+                switch (currentStatus.CardinalDirection)
+                {
+                    case CardinalDirection.North:
+                        newDirection = CardinalDirection.West;
+                        break;
+                    case CardinalDirection.South:
+                        newDirection = CardinalDirection.East;
+                        break;
+                    case CardinalDirection.East:
+                        newDirection = CardinalDirection.North;
+                        break;
+                    case CardinalDirection.West:
+                        newDirection = CardinalDirection.South;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(currentStatus.CardinalDirection), "Error: currentCardinalDirection not set");
+                }
+            }
+            else
+            {
+                switch (currentStatus.CardinalDirection)
+                {
+                    case CardinalDirection.North:
+                        newDirection = CardinalDirection.East;
+                        break;
+                    case CardinalDirection.South:
+                        newDirection = CardinalDirection.West;
+                        break;
+                    case CardinalDirection.East:
+                        newDirection = CardinalDirection.South;
+                        break;
+                    case CardinalDirection.West:
+                        newDirection = CardinalDirection.North;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(currentStatus.CardinalDirection), "Error: currentCardinalDirection not set");
+                }
             }
 
-            return newDirection;
+
+            currentStatus.CardinalDirection = newDirection;
+            currentStatus.MovementAction = MovementAction.Left;
+
+            return currentStatus;
         }
 
     }

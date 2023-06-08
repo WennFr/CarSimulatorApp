@@ -5,34 +5,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLogicLibrary.DirectionStrategies.Interfaces;
+using DataLogicLibrary.DTO;
 
 namespace DataLogicLibrary.DirectionStrategies
 {
     public class ReverseStrategy : IDirectionStrategy
     {
-        public CardinalDirection Execute(CardinalDirection currentCardinalDirection, MovementAction movementAction)
+        public StatusDTO Execute(StatusDTO currentStatus)
         {
             CardinalDirection newDirection;
 
-            switch (currentCardinalDirection)
+            if (currentStatus.MovementAction != MovementAction.Backward)
             {
-                case CardinalDirection.North:
-                    newDirection = CardinalDirection.South;
-                    break;
-                case CardinalDirection.South:
-                    newDirection = CardinalDirection.North;
-                    break;
-                case CardinalDirection.East:
-                    newDirection = CardinalDirection.West;
-                    break;
-                case CardinalDirection.West:
-                    newDirection = CardinalDirection.East;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(currentCardinalDirection), "Error: currentCardinalDirection not set");
+                switch (currentStatus.CardinalDirection)
+                {
+                    case CardinalDirection.North:
+                        newDirection = CardinalDirection.South;
+                        break;
+                    case CardinalDirection.South:
+                        newDirection = CardinalDirection.North;
+                        break;
+                    case CardinalDirection.East:
+                        newDirection = CardinalDirection.West;
+                        break;
+                    case CardinalDirection.West:
+                        newDirection = CardinalDirection.East;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(currentStatus.CardinalDirection), "Error: currentCardinalDirection not set");
+                }
             }
 
-            return newDirection;
+            else
+            {
+                newDirection = currentStatus.CardinalDirection;
+            }
+
+            currentStatus.CardinalDirection = newDirection;
+            currentStatus.MovementAction = MovementAction.Backward;
+
+            return currentStatus;
         }
 
     }

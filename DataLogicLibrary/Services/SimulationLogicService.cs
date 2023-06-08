@@ -34,28 +34,23 @@ namespace DataLogicLibrary.Services
 
         public StatusDTO PerformAction(int userInput, StatusDTO currentStatus)
         {
-            MovementAction movementAction = 0;
 
             switch (userInput)
             {
                 case 1:
                     _directionContext.SetStrategy(_turnLeftStrategy);
-                    movementAction = MovementAction.Left;
                     break;
 
                 case 2:
                     _directionContext.SetStrategy(_turnRightStrategy);
-                    movementAction = MovementAction.Right;
                     break;
 
                 case 3:
                     _directionContext.SetStrategy(_driveForwardStrategy);
-                    movementAction = MovementAction.Forward;
                     break;
 
                 case 4:
                     _directionContext.SetStrategy(_reverseStrategy);
-                    movementAction = MovementAction.Backward;
                     break;
 
                 case 5:
@@ -67,7 +62,7 @@ namespace DataLogicLibrary.Services
 
             }
 
-            currentStatus.CardinalDirection = _directionContext.ExecuteStrategy(currentStatus.CardinalDirection, movementAction);
+            currentStatus = _directionContext.ExecuteStrategy(currentStatus);
 
             return currentStatus;
 
