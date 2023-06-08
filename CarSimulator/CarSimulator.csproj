@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\APIServiceLibrary\APIServiceLibrary.csproj" />
     <ProjectReference Include="..\DataLogicLibrary\DataLogicLibrary.csproj" />
     <ProjectReference Include="..\ValidationServiceLibrary\ValidationServiceLibrary.csproj" />
   </ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using APIServiceLibrary.Services;
 using DataLogicLibrary.DirectionStrategies.Interfaces;
 using DataLogicLibrary.DirectionStrategies;
 using DataLogicLibrary.Infrastructure.Enums;
@@ -22,6 +23,7 @@ namespace CarSimulator
             services.AddTransient<IDirectionContext, DirectionContext>();
             services.AddTransient<IColorService, ColorService>();
             services.AddTransient<IMessageService, MessageService>();
+            services.AddTransient<IAPIService, APIService>();
 
             services.AddTransient<TurnLeftStrategy>();
             services.AddTransient<TurnRightStrategy>();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using APIServiceLibrary.Services;
 using CarSimulator.Infrastructure;
 using CarSimulator.Simulation;
 using DataLogicLibrary.DirectionStrategies.Interfaces;
@@ -26,12 +27,13 @@ namespace CarSimulator
             startup.ConfigureServices(services);
 
             var serviceProvider = services.BuildServiceProvider();
+            var apiService = serviceProvider.GetService<IAPIService>();
             var validationService = serviceProvider.GetService<IValidationService>();
             var simulationLogicService = serviceProvider.GetService<ISimulationLogicService>();
             var colorService = serviceProvider.GetService<IColorService>();
             var messageService = serviceProvider.GetService<IMessageService>();
 
-            var carSimulation = new CarSimulation(validationService, simulationLogicService, colorService, messageService);
+            var carSimulation = new CarSimulation(apiService, validationService, simulationLogicService, colorService, messageService);
             carSimulation.Execute();
 
 

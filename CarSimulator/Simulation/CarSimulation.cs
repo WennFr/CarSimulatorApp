@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using APIServiceLibrary.Services;
 using CarSimulator.Infrastructure.Menus;
 using CarSimulator.Models;
 using DataLogicLibrary.DTO;
@@ -14,14 +15,16 @@ namespace CarSimulator.Simulation
 {
     public class CarSimulation
     {
-        public CarSimulation(IValidationService validationService, ISimulationLogicService simulationLogicService, IColorService colorService, IMessageService messageService)
+        public CarSimulation(IAPIService apiService, IValidationService validationService, ISimulationLogicService simulationLogicService, IColorService colorService, IMessageService messageService)
         {
+            _apiService = apiService;
             _validationService = validationService;
             _simulationLogicService = simulationLogicService;
             _colorService = colorService;
             _messageService = messageService;
         }
 
+        private readonly IAPIService _apiService;
         private readonly IValidationService _validationService;
         private readonly ISimulationLogicService _simulationLogicService;
         private readonly IColorService _colorService;
@@ -29,6 +32,8 @@ namespace CarSimulator.Simulation
 
         public void Execute()
         {
+            var resultDTO = _apiService.GetOneDriver();
+
             var car = new Car();
             var driver = new Driver();
             var currentStatus = new StatusDTO
@@ -38,6 +43,8 @@ namespace CarSimulator.Simulation
                 GasValue = 20,
                 EnergyValue = 20
             };
+
+
 
             var userInput = 0;
 
