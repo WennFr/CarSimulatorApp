@@ -44,6 +44,7 @@ namespace DataLogicLibrary.Services
                     _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Aborted simulation{Environment.NewLine}");
                     break;
                 default:
+                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car is stopped.{Environment.NewLine}");
                     break;
             }
 
