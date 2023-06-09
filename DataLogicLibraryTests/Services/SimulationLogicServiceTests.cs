@@ -16,7 +16,7 @@ namespace DataLogicLibraryTests.Services
     [TestClass]
     public class SimulationLogicServiceTests
     {
-        private SimulationLogicService sut;
+        private SimulationLogicService _sut;
         private DirectionContext directionContext;
         private DirectionStrategyResolver directionStrategyResolver;
         private ColorService colorService;
@@ -41,7 +41,7 @@ namespace DataLogicLibraryTests.Services
                 }
             };
             colorService = new ColorService();
-            sut = new SimulationLogicService(directionContext, directionStrategyResolver, colorService);
+            _sut = new SimulationLogicService(directionContext, directionStrategyResolver, colorService);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace DataLogicLibraryTests.Services
             var userInputTurnLeft = 1;
 
             // Act
-            var result = sut.DecreaseStatusValues(userInputTurnLeft, status);
+            var result = _sut.DecreaseStatusValues(userInputTurnLeft, status);
 
             // Assert
             Assert.IsTrue(result.EnergyValue < 20);
@@ -76,7 +76,7 @@ namespace DataLogicLibraryTests.Services
 
 
             // Act
-            var result = sut.DecreaseStatusValues(userInputTurnLeft, status);
+            var result = _sut.DecreaseStatusValues(userInputTurnLeft, status);
 
             // Assert
             Assert.AreEqual(expectedEnergyValue, result.EnergyValue);
@@ -84,7 +84,7 @@ namespace DataLogicLibraryTests.Services
 
 
         [TestMethod]
-        public void Gas_Gets_Consumed_After_Decrease_Status_Values_And_Driver_Is_Not_Resting()
+        public void Gas_Gets_Consumed_After_Decrease_Status_Values_When_Driver_Is_Not_Resting()
         {
             // Arrange
             var status = new StatusDTO()
@@ -95,14 +95,14 @@ namespace DataLogicLibraryTests.Services
             var userInputReverse = 4;
 
             // Act
-            var result = sut.DecreaseStatusValues(userInputReverse, status);
+            var result = _sut.DecreaseStatusValues(userInputReverse, status);
 
             // Assert
             Assert.IsTrue(result.GasValue < 20);
         }
 
         [TestMethod]
-        public void Gas_Does_Not_Get_Consumed_After_Decrease_Status_Values_And_Driver_Is_Resting()
+        public void Gas_Does_Not_Get_Consumed_After_Decrease_Status_Values_When_Driver_Is_Resting()
         {
             // Arrange
             var status = new StatusDTO()
@@ -114,7 +114,7 @@ namespace DataLogicLibraryTests.Services
             var expectedGasValue = 20;
 
             // Act
-            var result = sut.DecreaseStatusValues(userInputRefuel, status);
+            var result = _sut.DecreaseStatusValues(userInputRefuel, status);
 
             // Assert
             Assert.AreEqual(expectedGasValue, result.GasValue);
@@ -135,7 +135,7 @@ namespace DataLogicLibraryTests.Services
 
 
             // Act
-            var result = sut.DecreaseStatusValues(userInputDriveForward, status);
+            var result = _sut.DecreaseStatusValues(userInputDriveForward, status);
 
             // Assert
             Assert.AreEqual(expectedGasValue, result.GasValue);
@@ -145,26 +145,100 @@ namespace DataLogicLibraryTests.Services
 
 
         [TestMethod]
-        public void CardinalDirection_Remains_Same_When_Driving_Forward()
+        public void Forward_Action_CardinalDirection_Remains_North_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.North,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Left
+            };
+            var userInputForward = 3;
+
+            var expectedDirection = CardinalDirection.North;
+
+            // Act
+            var result = _sut.PerformAction(userInputForward, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+
+        }
+
+        [TestMethod]
+        public void Forward_Action_CardinalDirection_Changes_To_North_From_South_When_Previous_Movement_Is_Backward()
         {
             // Arrange
             var status = new StatusDTO()
             {
                 CardinalDirection = CardinalDirection.South,
                 GasValue = 20,
-                EnergyValue = 20
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
             };
-            var userInput = 3;
+            var userInputForward = 3;
 
-            var expected = CardinalDirection.South;
+            var expectedDirection = CardinalDirection.North;
 
             // Act
-            var result = sut.PerformAction(userInput, status);
+            var result = _sut.PerformAction(userInputForward, status);
 
             // Assert
-            Assert.AreEqual(expected, result.CardinalDirection);
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
 
         }
+
+
+
+        [TestMethod]
+        public void Backward_Action_CardinalDirection_Changes_To_South_From_North_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.North,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+
+            };
+            var userInputReverse = 4;
+
+            var expectedDirection = CardinalDirection.South;
+
+            // Act
+            var result = _sut.PerformAction(userInputReverse, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+
+        [TestMethod]
+        public void Backward_Action_CardinalDirection_Remains_South_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.South,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInputReverse = 4;
+
+            var expectedDirection = CardinalDirection.South;
+
+            // Act
+            var result = _sut.PerformAction(userInputReverse, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
 
         [TestMethod]
         public void CardinalDirection_Changes_To_East_When_Turning_Left_From_South()
@@ -181,7 +255,7 @@ namespace DataLogicLibraryTests.Services
             var expected = CardinalDirection.East;
 
             // Act
-            var result = sut.PerformAction(userInput, status);
+            var result = _sut.PerformAction(userInput, status);
 
             // Assert
             Assert.AreEqual(expected, result.CardinalDirection);
@@ -203,7 +277,7 @@ namespace DataLogicLibraryTests.Services
             var expected = CardinalDirection.West;
 
             // Act
-            var result = sut.PerformAction(userInput, status);
+            var result = _sut.PerformAction(userInput, status);
 
             // Assert
             Assert.AreEqual(expected, result.CardinalDirection);
@@ -224,7 +298,7 @@ namespace DataLogicLibraryTests.Services
             var expected = CardinalDirection.South;
 
             // Act
-            var result = sut.PerformAction(userInput, status);
+            var result = _sut.PerformAction(userInput, status);
 
             // Assert
             Assert.AreEqual(expected, result.CardinalDirection);
