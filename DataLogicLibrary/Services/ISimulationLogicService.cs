@@ -11,7 +11,7 @@ namespace DataLogicLibrary.Services
     {
         StatusDTO PerformAction(int userInput, StatusDTO currentStatus);
 
-        StatusDTO UpdateStatusValues(int userInput, StatusDTO currentStatus);
+        StatusDTO DecreaseStatusValues(int userInput, StatusDTO currentStatus);
 
         void ColorStatusTextBasedOnValue(string stringToColor, int currentValue);
 

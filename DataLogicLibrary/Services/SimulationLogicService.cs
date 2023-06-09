@@ -68,7 +68,7 @@ namespace DataLogicLibrary.Services
 
         }
 
-        public StatusDTO UpdateStatusValues(int userInput, StatusDTO currentStatus)
+        public StatusDTO DecreaseStatusValues(int userInput, StatusDTO currentStatus)
         {
 
             Random random = new Random();

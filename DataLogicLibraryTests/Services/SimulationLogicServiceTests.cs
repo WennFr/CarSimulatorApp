@@ -45,7 +45,7 @@ namespace DataLogicLibraryTests.Services
         }
 
         [TestMethod]
-        public void Driver_Gets_Tired_After_Update_Status_Values()
+        public void Driver_Gets_Tired_After_Decrease_Status_Values()
         {
             // Arrange
             var status = new StatusDTO()
@@ -56,11 +56,32 @@ namespace DataLogicLibraryTests.Services
             var userInput = 1;
 
             // Act
-            var result = sut.UpdateStatusValues(userInput, status);
+            var result = sut.DecreaseStatusValues(userInput, status);
 
             // Assert
             Assert.IsTrue(result.EnergyValue < 20);
         }
+
+        [TestMethod]
+        public void Driver_Energy_Value_Does_Not_Go_Below_Zero_After_Decrease_Status_Values()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                GasValue = 20,
+                EnergyValue = 0
+            };
+            var userInput = 1;
+            var expectedEnergyValue = 0;
+
+
+            // Act
+            var result = sut.DecreaseStatusValues(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expectedEnergyValue, result.EnergyValue);
+        }
+
 
         [TestMethod]
         public void Gas_Gets_Consumed_After_Update_Status_Values_And_User_Is_Not_Refueling()
@@ -74,7 +95,7 @@ namespace DataLogicLibraryTests.Services
             var userInput = 4;
 
             // Act
-            var result = sut.UpdateStatusValues(userInput, status);
+            var result = sut.DecreaseStatusValues(userInput, status);
 
             // Assert
             Assert.IsTrue(result.GasValue < 20);
@@ -92,7 +113,7 @@ namespace DataLogicLibraryTests.Services
             var userInput = 5;
 
             // Act
-            var result = sut.UpdateStatusValues(userInput, status);
+            var result = sut.DecreaseStatusValues(userInput, status);
 
             // Assert
             Assert.IsTrue(result.GasValue == 20);
