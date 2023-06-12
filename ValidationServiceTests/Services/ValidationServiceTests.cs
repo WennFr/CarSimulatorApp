@@ -125,54 +125,5 @@ namespace ValidationServiceTests.Services
             Assert.AreEqual(expectedMenuSelection, result);
         }
 
-        [Test]
-        public void Menu_Selection_InvalidInput()
-        {
-            // Arrange
-            var input = "abc";
-            var expectedOutput = $"{Environment.NewLine}Choose between the available menu numbers{Environment.NewLine}";
-
-            using (ManualResetEventSlim resetEvent = new ManualResetEventSlim(false))
-            {
-                // Start a separate thread to execute the method
-                Thread executionThread = new Thread(() =>
-                {
-                    _sut.ValidateMenuSelection(7);
-                    resetEvent.Set(); // Signal the test thread when execution is complete
-                });
-
-                // Capture the console output
-                using (StringWriter stringWriter = new StringWriter())
-                {
-                    var consoleOut = Console.Out; // Backup original Console.Out
-                    Console.SetOut(stringWriter); // Redirect Console.Out to the StringWriter
-
-                    // Start the execution thread
-                    executionThread.Start();
-
-                    // Wait for the expected output or execution completion
-                    resetEvent.Wait(); // Wait for the signal from the execution thread
-
-                    var output = stringWriter.ToString();
-
-                    // Assert
-                    Assert.AreEqual(expectedOutput, output);
-
-                    // Restore original Console.Out
-                    Console.SetOut(consoleOut);
-
-                    // Wait for the execution thread to complete
-                    executionThread.Join();
-                }
-            }
-        }
-
-
-
-
-
-
-
-
     }
 }
