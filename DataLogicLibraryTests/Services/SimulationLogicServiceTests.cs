@@ -168,6 +168,75 @@ namespace DataLogicLibraryTests.Services
         }
 
         [TestMethod]
+        public void Forward_Action_CardinalDirection_Remains_East_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.East,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Left
+            };
+            var userInputForward = 3;
+
+            var expectedDirection = CardinalDirection.East;
+
+            // Act
+            var result = _sut.PerformAction(userInputForward, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+
+        }
+
+        [TestMethod]
+        public void Forward_Action_CardinalDirection_Remains_South_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.South,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Left
+            };
+            var userInputForward = 3;
+
+            var expectedDirection = CardinalDirection.South;
+
+            // Act
+            var result = _sut.PerformAction(userInputForward, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+
+        }
+
+        [TestMethod]
+        public void Forward_Action_CardinalDirection_Remains_West_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.West,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Left
+            };
+            var userInputForward = 3;
+
+            var expectedDirection = CardinalDirection.West;
+
+            // Act
+            var result = _sut.PerformAction(userInputForward, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+
+        }
+
+        [TestMethod]
         public void Forward_Action_CardinalDirection_Changes_To_North_From_South_When_Previous_Movement_Is_Backward()
         {
             // Arrange
@@ -190,10 +259,79 @@ namespace DataLogicLibraryTests.Services
 
         }
 
+        [TestMethod]
+        public void Forward_Action_CardinalDirection_Changes_To_East_From_West_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.West,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+            };
+            var userInputForward = 3;
+
+            var expectedDirection = CardinalDirection.East;
+
+            // Act
+            var result = _sut.PerformAction(userInputForward, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+
+        }
+
+        [TestMethod]
+        public void Forward_Action_CardinalDirection_Changes_To_South_From_North_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.North,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+            };
+            var userInputForward = 3;
+
+            var expectedDirection = CardinalDirection.South;
+
+            // Act
+            var result = _sut.PerformAction(userInputForward, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+
+        }
 
 
         [TestMethod]
-        public void Backward_Action_CardinalDirection_Changes_To_South_From_North_When_Previous_Movement_Is_Not_Backward()
+        public void Forward_Action_CardinalDirection_Changes_To_West_From_East_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.East,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+            };
+            var userInputForward = 3;
+
+            var expectedDirection = CardinalDirection.West;
+
+            // Act
+            var result = _sut.PerformAction(userInputForward, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+
+        }
+
+
+        [TestMethod]
+        public void Reverse_Action_CardinalDirection_Changes_To_South_From_North_When_Previous_Movement_Is_Not_Backward()
         {
             // Arrange
             var status = new StatusDTO()
@@ -215,9 +353,78 @@ namespace DataLogicLibraryTests.Services
             Assert.AreEqual(expectedDirection, result.CardinalDirection);
         }
 
+        [TestMethod]
+        public void Reverse_Action_CardinalDirection_Changes_To_West_From_East_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.East,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+
+            };
+            var userInputReverse = 4;
+
+            var expectedDirection = CardinalDirection.West;
+
+            // Act
+            var result = _sut.PerformAction(userInputReverse, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
 
         [TestMethod]
-        public void Backward_Action_CardinalDirection_Remains_South_When_Previous_Movement_Is_Backward()
+        public void Reverse_Action_CardinalDirection_Changes_To_North_From_South_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.South,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+
+            };
+            var userInputReverse = 4;
+
+            var expectedDirection = CardinalDirection.North;
+
+            // Act
+            var result = _sut.PerformAction(userInputReverse, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+
+        [TestMethod]
+        public void Reverse_Action_CardinalDirection_Changes_To_East_From_West_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.West,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+
+            };
+            var userInputReverse = 4;
+
+            var expectedDirection = CardinalDirection.East;
+
+            // Act
+            var result = _sut.PerformAction(userInputReverse, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+        [TestMethod]
+        public void Reverse_Action_CardinalDirection_Remains_South_When_Previous_Movement_Is_Backward()
         {
             // Arrange
             var status = new StatusDTO()
@@ -239,18 +446,302 @@ namespace DataLogicLibraryTests.Services
             Assert.AreEqual(expectedDirection, result.CardinalDirection);
         }
 
+        [TestMethod]
+        public void Reverse_Action_CardinalDirection_Remains_West_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.West,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInputReverse = 4;
+
+            var expectedDirection = CardinalDirection.West;
+
+            // Act
+            var result = _sut.PerformAction(userInputReverse, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
 
         [TestMethod]
-        public void CardinalDirection_Changes_To_East_When_Turning_Left_From_South()
+        public void Reverse_Action_CardinalDirection_Remains_North_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.North,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInputReverse = 4;
+
+            var expectedDirection = CardinalDirection.North;
+
+            // Act
+            var result = _sut.PerformAction(userInputReverse, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+
+        [TestMethod]
+        public void Reverse_Action_CardinalDirection_Remains_East_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.East,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInputReverse = 4;
+
+            var expectedDirection = CardinalDirection.East;
+
+            // Act
+            var result = _sut.PerformAction(userInputReverse, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+
+        [TestMethod]
+        public void Turn_Left_Action_CardinalDirection_Changes_To_West_From_North_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.North,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+            };
+            var userInputTurnLeft = 1;
+
+            var expectedDirection = CardinalDirection.West;
+
+            // Act
+            var result = _sut.PerformAction(userInputTurnLeft, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+        [TestMethod]
+        public void Turn_Left_Action_CardinalDirection_Changes_To_South_From_West_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.West,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+
+            };
+            var userInputTurnLeft = 1;
+
+            var expectedDirection = CardinalDirection.South;
+
+            // Act
+            var result = _sut.PerformAction(userInputTurnLeft, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+        [TestMethod]
+        public void Turn_Left_Action_CardinalDirection_Changes_To_East_From_South_When_Previous_Movement_Is_Not_Backward()
         {
             // Arrange
             var status = new StatusDTO()
             {
                 CardinalDirection = CardinalDirection.South,
                 GasValue = 20,
-                EnergyValue = 20
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+
             };
-            var userInput = 1;
+            var userInputTurnLeft = 1;
+
+            var expectedDirection = CardinalDirection.East;
+
+            // Act
+            var result = _sut.PerformAction(userInputTurnLeft, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+        [TestMethod]
+        public void Turn_Left_Action_CardinalDirection_Changes_To_North_From_East_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.East,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+
+            };
+            var userInputTurnLeft = 1;
+
+            var expectedDirection = CardinalDirection.North;
+
+            // Act
+            var result = _sut.PerformAction(userInputTurnLeft, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+
+        [TestMethod]
+        public void Turn_Left_Action_CardinalDirection_Changes_To_West_From_South_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.South,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInputTurnLeft = 1;
+
+            var expectedDirection = CardinalDirection.West;
+
+            // Act
+            var result = _sut.PerformAction(userInputTurnLeft, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+        [TestMethod]
+        public void Turn_Left_Action_CardinalDirection_Changes_To_North_From_West_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.West,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInputTurnLeft = 1;
+
+            var expectedDirection = CardinalDirection.North;
+
+            // Act
+            var result = _sut.PerformAction(userInputTurnLeft, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+
+        [TestMethod]
+        public void Turn_Left_Action_CardinalDirection_Changes_To_East_From_North_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.North,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInputTurnLeft = 1;
+
+            var expectedDirection = CardinalDirection.East;
+
+            // Act
+            var result = _sut.PerformAction(userInputTurnLeft, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+        [TestMethod]
+        public void Turn_Left_Action_CardinalDirection_Changes_To_South_From_East_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.East,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInputTurnLeft = 1;
+
+            var expectedDirection = CardinalDirection.South;
+
+            // Act
+            var result = _sut.PerformAction(userInputTurnLeft, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+        }
+
+
+        [TestMethod]
+        public void Turn_Right_Action_CardinalDirection_Changes_To_North_From_West_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.West,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+
+            };
+            var userInput = 2;
+
+            var expected = CardinalDirection.North;
+
+            // Act
+            var result = _sut.PerformAction(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expected, result.CardinalDirection);
+        }
+
+
+
+
+        [TestMethod]
+        public void Turn_Right_Action_CardinalDirection_Changes_To_East_From_North_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.North,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+
+            };
+            var userInput = 2;
 
             var expected = CardinalDirection.East;
 
@@ -263,14 +754,41 @@ namespace DataLogicLibraryTests.Services
 
 
         [TestMethod]
-        public void CardinalDirection_Changes_To_West_When_Turning_Right_From_South()
+        public void Turn_Right_Action_CardinalDirection_Changes_To_South_From_East_When_Previous_Movement_Is_Not_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.East,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+
+            };
+            var userInput = 2;
+
+            var expected = CardinalDirection.South;
+
+            // Act
+            var result = _sut.PerformAction(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expected, result.CardinalDirection);
+        }
+
+
+
+        [TestMethod]
+        public void Turn_Right_Action_CardinalDirection_Changes_To_West_From_South_When_Previous_Movement_Is_Not_Backward()
         {
             // Arrange
             var status = new StatusDTO()
             {
                 CardinalDirection = CardinalDirection.South,
                 GasValue = 20,
-                EnergyValue = 20
+                EnergyValue = 20,
+                MovementAction = MovementAction.Forward
+                
             };
             var userInput = 2;
 
@@ -282,6 +800,105 @@ namespace DataLogicLibraryTests.Services
             // Assert
             Assert.AreEqual(expected, result.CardinalDirection);
         }
+
+
+
+        [TestMethod]
+        public void Turn_Right_Action_CardinalDirection_Changes_To_South_From_West_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.West,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInput = 2;
+
+            var expected = CardinalDirection.South;
+
+            // Act
+            var result = _sut.PerformAction(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expected, result.CardinalDirection);
+        }
+
+
+        [TestMethod]
+        public void Turn_Right_Action_CardinalDirection_Changes_To_West_From_North_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.North,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInput = 2;
+
+            var expected = CardinalDirection.West;
+
+            // Act
+            var result = _sut.PerformAction(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expected, result.CardinalDirection);
+        }
+
+        [TestMethod]
+        public void Turn_Right_Action_CardinalDirection_Changes_To_North_From_East_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.East,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInput = 2;
+
+            var expected = CardinalDirection.North;
+
+            // Act
+            var result = _sut.PerformAction(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expected, result.CardinalDirection);
+        }
+
+
+        [TestMethod]
+        public void Turn_Right_Action_CardinalDirection_Changes_To_East_From_South_When_Previous_Movement_Is_Backward()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.South,
+                GasValue = 20,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Backward
+
+            };
+            var userInput = 2;
+
+            var expected = CardinalDirection.East;
+
+            // Act
+            var result = _sut.PerformAction(userInput, status);
+
+            // Assert
+            Assert.AreEqual(expected, result.CardinalDirection);
+        }
+
+
+
 
         [TestMethod]
         public void CardinalDirection_Changes_To_South_When_Reversing_From_North()
