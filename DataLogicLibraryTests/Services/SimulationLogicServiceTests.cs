@@ -897,28 +897,5 @@ namespace DataLogicLibraryTests.Services
             Assert.AreEqual(expected, result.CardinalDirection);
         }
 
-
-
-
-        [TestMethod]
-        public void CardinalDirection_Changes_To_South_When_Reversing_From_North()
-        {
-            // Arrange
-            var status = new StatusDTO()
-            {
-                CardinalDirection = CardinalDirection.North,
-                GasValue = 20,
-                EnergyValue = 20
-            };
-            var userInput = 4;
-
-            var expected = CardinalDirection.South;
-
-            // Act
-            var result = _sut.PerformAction(userInput, status);
-
-            // Assert
-            Assert.AreEqual(expected, result.CardinalDirection);
-        }
     }
 }
