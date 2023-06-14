@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLogicLibrary.DTO;
+using DataLogicLibrary.Services.Interfaces;
 
 namespace DataLogicLibrary.Services
 {

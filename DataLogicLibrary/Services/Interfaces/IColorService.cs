@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLogicLibrary.Services
+namespace DataLogicLibrary.Services.Interfaces
 {
     public interface IColorService
     {

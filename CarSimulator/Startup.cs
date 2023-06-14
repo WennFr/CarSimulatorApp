@@ -10,6 +10,7 @@ using DataLogicLibrary.Infrastructure.Enums;
 using DataLogicLibrary.Services;
 using Microsoft.Extensions.DependencyInjection;
 using ValidationServiceLibrary.Services;
+using DataLogicLibrary.Services.Interfaces;
 
 namespace CarSimulator
 {

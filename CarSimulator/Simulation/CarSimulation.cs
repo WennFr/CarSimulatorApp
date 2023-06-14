@@ -8,7 +8,7 @@ using CarSimulator.Infrastructure.Menus;
 using CarSimulator.Models;
 using DataLogicLibrary.DTO;
 using DataLogicLibrary.Infrastructure.Enums;
-using DataLogicLibrary.Services;
+using DataLogicLibrary.Services.Interfaces;
 using ValidationServiceLibrary.Services;
 
 namespace CarSimulator.Simulation
