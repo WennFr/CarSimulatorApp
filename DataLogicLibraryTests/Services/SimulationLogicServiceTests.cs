@@ -8,6 +8,8 @@ using DataLogicLibrary.DirectionStrategies.Interfaces;
 using DataLogicLibrary.DTO;
 using DataLogicLibrary.Infrastructure.Enums;
 using DataLogicLibrary.Services;
+using DataLogicLibrary.Services.Interfaces;
+using Moq;
 using static System.Net.Mime.MediaTypeNames;
 using static DataLogicLibrary.Services.SimulationLogicService;
 
@@ -20,6 +22,8 @@ namespace DataLogicLibraryTests.Services
         private DirectionContext directionContext;
         private DirectionStrategyResolver directionStrategyResolver;
         private ColorService colorService;
+        private readonly Mock<IHungerService> _hungerServiceMock;
+
 
         public SimulationLogicServiceTests()
         {
@@ -41,8 +45,106 @@ namespace DataLogicLibraryTests.Services
                 }
             };
             colorService = new ColorService();
-            _sut = new SimulationLogicService(directionContext, directionStrategyResolver, colorService);
+            _hungerServiceMock = new Mock<IHungerService>();
+            _sut = new SimulationLogicService(directionContext, directionStrategyResolver, colorService, _hungerServiceMock.Object);
+
         }
+
+        [TestMethod]
+        public void Driver_Gets_Full_After_Eating_Moq_Test()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                GasValue = 20,
+                EnergyValue = 20,
+                HungerValue = 11,
+                HungerStatus = HungerStatus.Starving,
+            };
+            var userInputEat = 8;
+            var expectedHungerValue = 0;
+
+            _hungerServiceMock.Setup(h => h.ResetHunger()).Returns(0);
+
+            // Act
+            var result = _sut.PerformAction(userInputEat, status);
+
+            // Assert
+            Assert.AreEqual(expectedHungerValue, result.HungerValue);
+        }
+
+
+        [TestMethod]
+        public void Driver_Gets_Hungrier_After_Action_Hunger_Value_Moq_Test()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                GasValue = 20,
+                EnergyValue = 20,
+                HungerValue = 5,
+                HungerStatus = HungerStatus.Full
+            };
+            var userInputEat = 8;
+            var expectedHungerValue = 7;
+
+            _hungerServiceMock.Setup(h => h.IncreaseHunger(status.HungerValue)).Returns(status.HungerValue + 2);
+
+            // Act
+            var result = _sut.DecreaseStatusValues(userInputEat, status);
+
+            // Assert
+            Assert.AreEqual(expectedHungerValue, result.HungerValue);
+        }
+
+        [TestMethod]
+        public void Driver_Gets_Hungrier_After_Action_Hunger_Status_Moq_Test()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                GasValue = 20,
+                EnergyValue = 20,
+                HungerValue = 5,
+                HungerStatus = HungerStatus.Full
+            };
+            var userInputEat = 8;
+            var expectedHungerStatus = HungerStatus.Hungry;
+
+            _hungerServiceMock.Setup(h => h.IncreaseHunger(It.IsAny<int>())).Returns((int hungerValue) => hungerValue + 2);
+            _hungerServiceMock.Setup(h => h.GetHungerStatus(It.IsAny<int>())).Returns(HungerStatus.Hungry);
+
+            // Act
+            var result = _sut.DecreaseStatusValues(userInputEat, status);
+
+            // Assert
+            Assert.AreEqual(expectedHungerStatus, result.HungerStatus);
+        }
+
+        [TestMethod]
+        public void Driver_Gets_Starved_After_Action_Hunger_Status_Moq_Test()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                GasValue = 20,
+                EnergyValue = 20,
+                HungerValue = 14,
+                HungerStatus = HungerStatus.Starving
+            };
+            var userInputEat = 8;
+            var expectedHungerStatus = HungerStatus.Starved;
+
+            _hungerServiceMock.Setup(h => h.IncreaseHunger(It.IsAny<int>())).Returns((int hungerValue) => hungerValue + 2);
+            _hungerServiceMock.Setup(h => h.GetHungerStatus(It.IsAny<int>())).Returns(HungerStatus.Starved);
+
+            // Act
+            var result = _sut.DecreaseStatusValues(userInputEat, status);
+
+            // Assert
+            Assert.AreEqual(expectedHungerStatus, result.HungerStatus);
+        }
+
 
         [TestMethod]
         public void Driver_Gets_Tired_After_Decrease_Status_Values()
@@ -895,6 +997,9 @@ namespace DataLogicLibraryTests.Services
 
             // Assert
             Assert.AreEqual(expected, result.CardinalDirection);
+
+
+
         }
 
     }

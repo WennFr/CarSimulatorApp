@@ -11,6 +11,7 @@ using DataLogicLibrary.Services;
 using Microsoft.Extensions.DependencyInjection;
 using ValidationServiceLibrary.Services;
 using DataLogicLibrary.Services.Interfaces;
+using Moq;
 
 namespace CarSimulator
 {
@@ -25,7 +26,7 @@ namespace CarSimulator
             services.AddTransient<IColorService, ColorService>();
             services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IAPIService, APIService>();
-
+            services.AddTransient<IHungerService>(provider => Mock.Of<IHungerService>());
             services.AddTransient<TurnLeftStrategy>();
             services.AddTransient<TurnRightStrategy>();
             services.AddTransient<DriveForwardStrategy>();

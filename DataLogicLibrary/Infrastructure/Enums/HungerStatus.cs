@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataLogicLibrary.Infrastructure.Enums
 {
-    internal class Hunger
+    public enum HungerStatus
     {
+        Full = 0,
+        Hungry = 1,
+        Starving = 2,
+        Starved = 3
     }
 }

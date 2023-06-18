@@ -9,10 +9,10 @@ using CarSimulator.Infrastructure;
 using CarSimulator.Simulation;
 using DataLogicLibrary.DirectionStrategies.Interfaces;
 using DataLogicLibrary.DirectionStrategies;
-using DataLogicLibrary.Services;
 using Microsoft.Extensions.DependencyInjection;
 using ValidationServiceLibrary.Services;
 using DataLogicLibrary.Infrastructure.Enums;
+using DataLogicLibrary.Services;
 using DataLogicLibrary.Services.Interfaces;
 
 namespace CarSimulator
