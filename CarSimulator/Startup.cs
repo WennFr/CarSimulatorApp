@@ -66,13 +66,12 @@ namespace CarSimulator
             var apiService = serviceProvider.GetService<IAPIService>();
             var validationService = serviceProvider.GetService<IValidationService>();
             var simulationLogicService = serviceProvider.GetService<ISimulationLogicService>();
-            var colorService = serviceProvider.GetService<IColorService>();
             var messageService = serviceProvider.GetService<IMessageService>();
             var carService = serviceProvider.GetService<ICarFactory>();
             var driverService = serviceProvider.GetService<IDriverFactory>();
             var statusService = serviceProvider.GetService<IStatusFactory>();
 
-            return new CarSimulation(menu, apiService, validationService, simulationLogicService, colorService, messageService, carService, driverService, statusService);
+            return new CarSimulation(menu, apiService, validationService, simulationLogicService,messageService, carService, driverService, statusService);
         }
 
     }
