@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using APIServiceLibrary.Services;
 using CarSimulator.Factories;
+using CarSimulator.Menus;
 using CarSimulator.Simulation;
 using DataLogicLibrary.DirectionStrategies.Interfaces;
 using DataLogicLibrary.DirectionStrategies;
@@ -27,6 +28,7 @@ namespace CarSimulator
             services.AddTransient<ISimulationLogicService, SimulationLogicService>();
             services.AddTransient<IDirectionContext, DirectionContext>();
             services.AddTransient<IColorService, ColorService>();
+            services.AddTransient<IMenu, Menu>();
             services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IAPIService, APIService>();
             services.AddTransient<ICarFactory, CarFactory>();
@@ -60,6 +62,7 @@ namespace CarSimulator
         public CarSimulation GetServices(IServiceCollection services)
         {
             var serviceProvider = services.BuildServiceProvider();
+            var menu = serviceProvider.GetService<IMenu>();
             var apiService = serviceProvider.GetService<IAPIService>();
             var validationService = serviceProvider.GetService<IValidationService>();
             var simulationLogicService = serviceProvider.GetService<ISimulationLogicService>();
@@ -69,7 +72,7 @@ namespace CarSimulator
             var driverService = serviceProvider.GetService<IDriverFactory>();
             var statusService = serviceProvider.GetService<IStatusFactory>();
 
-            return new CarSimulation(apiService, validationService, simulationLogicService, colorService, messageService, carService, driverService, statusService);
+            return new CarSimulation(menu, apiService, validationService, simulationLogicService, colorService, messageService, carService, driverService, statusService);
         }
 
     }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using APIServiceLibrary.Services;
 using CarSimulator.Factories;
-using CarSimulator.Infrastructure;
 using CarSimulator.Simulation;
 using DataLogicLibrary.DirectionStrategies.Interfaces;
 using DataLogicLibrary.DirectionStrategies;
