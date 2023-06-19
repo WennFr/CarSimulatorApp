@@ -23,5 +23,7 @@ It also contains MOQ tests responsible for testing hunger values. This functiona
 
 'ValidationServiceTests' is an NUnit test project that includes all of the ValidationService tests. It verifies that the functionality of the validation user input method works as intended and that the correct menu option number is returned to the main project.
 
+'APIServiceTests' is an MSTest test project that includes an integration test for the APIService. The purpose of this test is to make sure that the api service returns a random user with valid properties that can be converted in to a driver later used by the application.
+
 CarSimulatorApp is designed with SRP and clean code in mind, meaning that it implements OOP (Object Oriented Programming) and design patterns to avoid concretions and promote maintainable code structure.
-An example of this is the implementation of strategy pattern for the direction logic which allows the CarSimulatorApp to dynamically change its behavior based on different direction options selected by the user.
+An example of this is the implementation of strategy pattern for the direction logic which allows the CarSimulatorApp to dynamically change its behavior based on different direction options selected by the user. To avoid concretions, the application also relies on factory pattern to retrieve the neccessary classes used in the simulations runtime logic. All patterns and dependencies are managed through the use of dependency injection and interfaces ensuring loose coupling.
