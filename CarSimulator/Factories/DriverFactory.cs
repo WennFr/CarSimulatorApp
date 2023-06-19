@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarSimulator.Factories
 {
-    public class DriverFactory
+    public class DriverFactory : IDriverFactory
     {
         public Driver CreateCar(ResultsDTO resultDTO)
         {

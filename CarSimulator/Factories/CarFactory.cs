@@ -7,7 +7,7 @@ using CarSimulator.Models;
 
 namespace CarSimulator.Factories
 {
-    public class CarFactory
+    public class CarFactory : ICarFactory
     {
         public Car CreateCar()
         {
