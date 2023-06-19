@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLogicLibraryTests", "Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIServiceLibrary", "APIServiceLibrary\APIServiceLibrary.csproj", "{79A4151F-26E9-4AC5-9F75-CB2B39F1CF41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationServiceTests", "ValidationServiceTests\ValidationServiceTests.csproj", "{15ED4373-6BB1-411A-AEAC-59F4D970733B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidationServiceTests", "ValidationServiceTests\ValidationServiceTests.csproj", "{15ED4373-6BB1-411A-AEAC-59F4D970733B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIServiceLibraryTests", "APIServiceLibraryTests\APIServiceLibraryTests.csproj", "{A9527335-6CC9-44DF-A00D-696C303EB535}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{15ED4373-6BB1-411A-AEAC-59F4D970733B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15ED4373-6BB1-411A-AEAC-59F4D970733B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15ED4373-6BB1-411A-AEAC-59F4D970733B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9527335-6CC9-44DF-A00D-696C303EB535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9527335-6CC9-44DF-A00D-696C303EB535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9527335-6CC9-44DF-A00D-696C303EB535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9527335-6CC9-44DF-A00D-696C303EB535}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
