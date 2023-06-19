@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using APIServiceLibrary.Services;
+using CarSimulator.Factories;
 using CarSimulator.Infrastructure.Menus;
 using CarSimulator.Models;
 using DataLogicLibrary.DTO;
@@ -16,13 +17,16 @@ namespace CarSimulator.Simulation
 {
     public class CarSimulation
     {
-        public CarSimulation(IAPIService apiService, IValidationService validationService, ISimulationLogicService simulationLogicService, IColorService colorService, IMessageService messageService)
+        public CarSimulation(IAPIService apiService, IValidationService validationService, ISimulationLogicService simulationLogicService,
+                             IColorService colorService, IMessageService messageService, ICarFactory carFactory, IDriverFactory driverFactory)
         {
             _apiService = apiService;
             _validationService = validationService;
             _simulationLogicService = simulationLogicService;
             _colorService = colorService;
             _messageService = messageService;
+            _carFactory = carFactory;
+            _driverFactory = driverFactory;
         }
 
         private readonly IAPIService _apiService;
@@ -30,20 +34,15 @@ namespace CarSimulator.Simulation
         private readonly ISimulationLogicService _simulationLogicService;
         private readonly IColorService _colorService;
         private readonly IMessageService _messageService;
+        private readonly ICarFactory _carFactory;
+        private readonly IDriverFactory _driverFactory;
 
         public async Task Execute()
         {
             var resultDTO = await _apiService.GetOneDriver();
 
-            var car = new Car();
-            var driver = new Driver
-            {
-                Title = resultDTO.Results[0].Name.Title,
-                First = resultDTO.Results[0].Name.First,
-                Last = resultDTO.Results[0].Name.Last,
-                City = resultDTO.Results[0].Location.City,
-                Country = resultDTO.Results[0].Location.Country,
-            };
+            var car = _carFactory.CreateCar();
+            var driver = _driverFactory.
             var currentStatus = new StatusDTO
             {
                 CardinalDirection = CardinalDirection.North,

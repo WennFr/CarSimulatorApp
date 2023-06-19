@@ -10,7 +10,7 @@ namespace CarSimulator.Factories
 {
     public class DriverFactory : IDriverFactory
     {
-        public Driver CreateCar(ResultsDTO resultDTO)
+        public Driver CreateDriver(ResultsDTO resultDTO)
         {
             return new Driver
             {

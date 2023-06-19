@@ -28,6 +28,7 @@ namespace CarSimulator
             services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IAPIService, APIService>();
             services.AddTransient<ICarFactory, CarFactory>();
+            services.AddTransient<IDriverFactory, DriverFactory>();
             services.AddTransient<IHungerService>(provider => Mock.Of<IHungerService>());
             services.AddTransient<TurnLeftStrategy>();
             services.AddTransient<TurnRightStrategy>();
@@ -52,7 +53,5 @@ namespace CarSimulator
             });
 
         }
-
-
     }
 }

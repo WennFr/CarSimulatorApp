@@ -10,6 +10,6 @@ namespace CarSimulator.Factories
 {
     public interface IDriverFactory
     {
-        Driver CreateCar(ResultsDTO resultDTO);
+        Driver CreateDriver(ResultsDTO resultDTO);
     }
 }
