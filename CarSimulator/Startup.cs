@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using APIServiceLibrary.Services;
 using CarSimulator.Factories;
+using CarSimulator.Simulation;
 using DataLogicLibrary.DirectionStrategies.Interfaces;
 using DataLogicLibrary.DirectionStrategies;
+using DataLogicLibrary.Factories;
 using DataLogicLibrary.Infrastructure.Enums;
 using DataLogicLibrary.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +31,7 @@ namespace CarSimulator
             services.AddTransient<IAPIService, APIService>();
             services.AddTransient<ICarFactory, CarFactory>();
             services.AddTransient<IDriverFactory, DriverFactory>();
+            services.AddTransient<IStatusFactory, StatusFactory>();
             services.AddTransient<IHungerService>(provider => Mock.Of<IHungerService>());
             services.AddTransient<TurnLeftStrategy>();
             services.AddTransient<TurnRightStrategy>();
@@ -53,5 +56,21 @@ namespace CarSimulator
             });
 
         }
+
+        public CarSimulation GetServices(IServiceCollection services)
+        {
+            var serviceProvider = services.BuildServiceProvider();
+            var apiService = serviceProvider.GetService<IAPIService>();
+            var validationService = serviceProvider.GetService<IValidationService>();
+            var simulationLogicService = serviceProvider.GetService<ISimulationLogicService>();
+            var colorService = serviceProvider.GetService<IColorService>();
+            var messageService = serviceProvider.GetService<IMessageService>();
+            var carService = serviceProvider.GetService<ICarFactory>();
+            var driverService = serviceProvider.GetService<IDriverFactory>();
+            var statusService = serviceProvider.GetService<IStatusFactory>();
+
+            return new CarSimulation(apiService, validationService, simulationLogicService, colorService, messageService, carService, driverService, statusService);
+        }
+
     }
 }

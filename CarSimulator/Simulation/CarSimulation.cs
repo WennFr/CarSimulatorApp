@@ -8,6 +8,7 @@ using CarSimulator.Factories;
 using CarSimulator.Infrastructure.Menus;
 using CarSimulator.Models;
 using DataLogicLibrary.DTO;
+using DataLogicLibrary.Factories;
 using DataLogicLibrary.Infrastructure.Enums;
 using DataLogicLibrary.Services;
 using DataLogicLibrary.Services.Interfaces;
@@ -18,7 +19,7 @@ namespace CarSimulator.Simulation
     public class CarSimulation
     {
         public CarSimulation(IAPIService apiService, IValidationService validationService, ISimulationLogicService simulationLogicService,
-                             IColorService colorService, IMessageService messageService, ICarFactory carFactory, IDriverFactory driverFactory)
+                             IColorService colorService, IMessageService messageService, ICarFactory carFactory, IDriverFactory driverFactory, IStatusFactory statusFactory)
         {
             _apiService = apiService;
             _validationService = validationService;
@@ -27,6 +28,7 @@ namespace CarSimulator.Simulation
             _messageService = messageService;
             _carFactory = carFactory;
             _driverFactory = driverFactory;
+            _statusFactory = statusFactory;
         }
 
         private readonly IAPIService _apiService;
@@ -36,23 +38,16 @@ namespace CarSimulator.Simulation
         private readonly IMessageService _messageService;
         private readonly ICarFactory _carFactory;
         private readonly IDriverFactory _driverFactory;
+        private readonly IStatusFactory _statusFactory;
 
         public async Task Execute()
         {
             var resultDTO = await _apiService.GetOneDriver();
             var car = _carFactory.CreateCar();
             var driver = _driverFactory.CreateDriver(resultDTO);
-
-            var currentStatus = new StatusDTO
-            {
-                CardinalDirection = CardinalDirection.North,
-                MovementAction = MovementAction.Forward,
-                GasValue = 20,
-                EnergyValue = 20
-            };
+            var currentStatus = _statusFactory.CreateStatus();
 
             var userInput = 0;
-
             OpeningPrompt(driver);
 
             while (true)
