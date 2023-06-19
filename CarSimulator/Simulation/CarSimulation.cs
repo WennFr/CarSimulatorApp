@@ -40,9 +40,9 @@ namespace CarSimulator.Simulation
         public async Task Execute()
         {
             var resultDTO = await _apiService.GetOneDriver();
-
             var car = _carFactory.CreateCar();
-            var driver = _driverFactory.
+            var driver = _driverFactory.CreateDriver(resultDTO);
+
             var currentStatus = new StatusDTO
             {
                 CardinalDirection = CardinalDirection.North,
