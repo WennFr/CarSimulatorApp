@@ -38,6 +38,10 @@ namespace DataLogicLibrary.Services
         public StatusDTO PerformAction(int userInput, StatusDTO currentStatus)
         {
 
+            if (userInput != 6 && currentStatus.GasValue == 0)
+                return currentStatus;
+
+
             switch (userInput)
             {
                 case 1:
@@ -63,20 +67,22 @@ namespace DataLogicLibrary.Services
                     currentStatus.GasValue = 20;
                     return currentStatus;
                 case 8:
-                   currentStatus.HungerValue = _hungerService.ResetHunger();
-                   currentStatus.HungerStatus = _hungerService.GetHungerStatus(currentStatus.HungerValue);
+                    currentStatus.HungerValue = _hungerService.ResetHunger();
+                    currentStatus.HungerStatus = _hungerService.GetHungerStatus(currentStatus.HungerValue);
                     return currentStatus;
 
             }
 
             currentStatus = _directionContext.ExecuteStrategy(currentStatus);
-
             return currentStatus;
 
         }
 
         public StatusDTO DecreaseStatusValues(int userInput, StatusDTO currentStatus)
         {
+
+            if (userInput != 6 && currentStatus.GasValue == 0)
+                return currentStatus;
 
             var driverIsResting = 5;
 
