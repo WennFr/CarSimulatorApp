@@ -19,6 +19,7 @@ namespace CarSimulator.Factories
                 Last = resultDTO.Results[0].Name.Last,
                 City = resultDTO.Results[0].Location.City,
                 Country = resultDTO.Results[0].Location.Country,
+                EnergyValue = 20
             };
         }
 

@@ -61,7 +61,7 @@ namespace CarSimulator.Simulation
 
                 _messageService.DisplayCarStatusMessage(car.GasValue);
                 _messageService.DisplayDriverStatusMessage(driver.EnergyValue, driver.First);
-                _messageService.DisplaySelectedAction(userInput);
+                _messageService.DisplaySelectedAction(userInput, car.GasValue);
 
                 _menu.DisplaySelectionMenu();
                 userInput = _validationService.ValidateMenuSelection(7);

@@ -18,36 +18,41 @@ namespace DataLogicLibrary.Services
         private readonly IColorService _colorService;
 
 
-        public void DisplaySelectedAction(int input)
+        public void DisplaySelectedAction(int userInput, int gasValue)
         {
+            if (userInput != 6 && gasValue == 0)
+                _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Refuel to drive the car!{Environment.NewLine}");
 
-            switch (input)
-            {
-                case 1:
-                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car turns and drives to the left{Environment.NewLine}");
-                    break;
-                case 2:
-                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car turns and drives to the right{Environment.NewLine}");
-                    break;
-                case 3:
-                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car drives forward{Environment.NewLine}");
-                    break;
-                case 4:
-                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car reverses and drives backwards{Environment.NewLine}");
-                    break;
-                case 5:
-                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Driver takes a rest{Environment.NewLine}");
-                    break;
-                case 6:
-                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car refuels{Environment.NewLine}");
-                    break;
-                case 7:
-                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Aborted simulation{Environment.NewLine}");
-                    break;
-                default:
-                    _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car is stationary.{Environment.NewLine}");
-                    break;
-            }
+            else
+                switch (userInput)
+                {
+                    case 1:
+                        _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car turns and drives to the left{Environment.NewLine}");
+                        break;
+                    case 2:
+                        _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car turns and drives to the right{Environment.NewLine}");
+                        break;
+                    case 3:
+                        _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car drives forward{Environment.NewLine}");
+                        break;
+                    case 4:
+                        _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car reverses and drives backwards{Environment.NewLine}");
+                        break;
+                    case 5:
+                        _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Driver takes a rest{Environment.NewLine}");
+                        break;
+                    case 6:
+                        _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car refuels{Environment.NewLine}");
+                        break;
+                    case 7:
+                        _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Aborted simulation{Environment.NewLine}");
+                        break;
+                    default:
+                        _colorService.ConsoleWriteLineWhite($"{Environment.NewLine}Car is stationary.{Environment.NewLine}");
+                        break;
+
+                }
+
 
 
         }
@@ -85,7 +90,7 @@ namespace DataLogicLibrary.Services
 
             else if (value == 0)
             {
-                _colorService.ConsoleWriteLineRed($"Car is completely out of gas!! Refuel now! {Environment.NewLine}");
+                _colorService.ConsoleWriteLineRed($"Car is completely out of gas! You have to refuel to drive the car! {Environment.NewLine}");
             }
         }
 

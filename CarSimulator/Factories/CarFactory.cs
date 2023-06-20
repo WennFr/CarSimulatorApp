@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarSimulator.Models;
+using DataLogicLibrary.Infrastructure.Enums;
 
 namespace CarSimulator.Factories
 {
@@ -11,7 +12,11 @@ namespace CarSimulator.Factories
     {
         public Car CreateCar()
         {
-            return new Car();
+            return new Car()
+            {
+                CardinalDirection = CardinalDirection.North,
+                GasValue = 20
+            };
         }
     }
 }
