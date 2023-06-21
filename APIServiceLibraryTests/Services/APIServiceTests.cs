@@ -14,7 +14,45 @@ namespace APIServiceLibraryTests.Services
         private APIService _sut;
 
         [TestMethod]
-        public async Task GetOneDriver_Returns_Valid_Driver_Information()
+        public async Task GetOneDriver_Returns_Not_Null_Object()
+        {
+
+            //Act
+            var result = await _sut.GetOneDriver();
+
+            //Assert
+            Assert.IsNotNull(result);
+
+        }
+
+
+        [TestMethod]
+        public async Task GetOneDriver_Returns_Valid_Title()
+        {
+
+            //Act
+            var result = await _sut.GetOneDriver();
+
+            //Assert
+            Assert.IsFalse(string.IsNullOrEmpty(result.Results[0].Name.Title));
+        }
+
+
+        [TestMethod]
+        public async Task GetOneDriver_Returns_Valid_First_Name()
+        {
+            //Act
+            var result = await _sut.GetOneDriver();
+
+            //Assert
+            Assert.IsFalse(string.IsNullOrEmpty(result.Results[0].Name.First));
+        }
+
+
+ 
+
+        [TestMethod]
+        public async Task GetOneDriver_Returns_Valid_Last_Name()
         {
 
 
@@ -22,13 +60,36 @@ namespace APIServiceLibraryTests.Services
             var result = await _sut.GetOneDriver();
 
             //Assert
-            Assert.IsNotNull(result);
-            Assert.IsFalse(string.IsNullOrEmpty(result.Results[0].Name.Title));
-            Assert.IsFalse(string.IsNullOrEmpty(result.Results[0].Name.First));
             Assert.IsFalse(string.IsNullOrEmpty(result.Results[0].Name.Last));
-            Assert.IsFalse(string.IsNullOrEmpty(result.Results[0].Location.City));
-            Assert.IsFalse(string.IsNullOrEmpty(result.Results[0].Location.Country));
 
         }
+
+        
+        [TestMethod]
+        public async Task GetOneDriver_Returns_Valid_City()
+        {
+
+
+            //Act
+            var result = await _sut.GetOneDriver();
+
+            //Assert
+            Assert.IsFalse(string.IsNullOrEmpty(result.Results[0].Location.City));
+
+        }
+
+        [TestMethod]
+        public async Task GetOneDriver_Returns_Valid_Country()
+        {
+
+            //Act
+            var result = await _sut.GetOneDriver();
+
+            //Assert
+            Assert.IsFalse(string.IsNullOrEmpty(result.Results[0].Location.Country));
+        }
+
+
+
     }
 }
