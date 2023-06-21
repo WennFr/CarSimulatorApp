@@ -269,6 +269,34 @@ namespace DataLogicLibraryTests.Services
 
         }
 
+
+        [TestMethod]
+        public void No_Gas_And_Not_Refueling_Makes_Car_Stay_Still()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                CardinalDirection = CardinalDirection.East,
+                GasValue = 0,
+                EnergyValue = 20,
+                MovementAction = MovementAction.Left
+            };
+            var userInputRight = 3;
+
+            var expectedDirection = status.CardinalDirection;
+
+            // Act
+            var result = _sut.PerformAction(userInputRight, status);
+
+            // Assert
+            Assert.AreEqual(expectedDirection, result.CardinalDirection);
+
+        }
+
+
+
+
+
         [TestMethod]
         public void Forward_Action_CardinalDirection_Remains_East_When_Previous_Movement_Is_Not_Backward()
         {
