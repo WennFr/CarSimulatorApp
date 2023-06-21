@@ -122,6 +122,31 @@ namespace DataLogicLibraryTests.Services
         }
 
         [TestMethod]
+        public void Driver_Gets_Starved_After_Action_Hunger_Value_Moq_Test()
+        {
+            // Arrange
+            var status = new StatusDTO()
+            {
+                GasValue = 20,
+                EnergyValue = 20,
+                HungerValue = 14,
+                HungerStatus = HungerStatus.Full
+            };
+            var userInputEat = 8;
+            var expectedHungerValue = 16;
+
+            _hungerServiceMock.Setup(h => h.IncreaseHunger(status.HungerValue)).Returns(status.HungerValue + 2);
+
+            // Act
+            var result = _sut.DecreaseStatusValues(userInputEat, status);
+
+            // Assert
+            Assert.AreEqual(expectedHungerValue, result.HungerValue);
+        }
+
+
+
+        [TestMethod]
         public void Driver_Gets_Starved_After_Action_Hunger_Status_Moq_Test()
         {
             // Arrange
