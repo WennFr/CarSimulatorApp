@@ -13,7 +13,7 @@ By design, the car will continue moving even after the status values have reache
 
 
 ## 🛠️ Implementations
-CarSimulatorApp was created in C#. The solution contains six different projects, some responsible for the application's logic and services, and others for testing purposes.
+CarSimulatorApp was created in C#. The solution contains six different projects, some responsible for the application's logic and services, and others for testing purposes. 
 The main project, CarSimulator, is a C# console application responsible for the startup and runtime of the solution. Furthermore, the solution utilizes three class libraries called 'DataLogicLibrary,' 'ValidationServiceLibrary,' and 'APIServiceLibrary.'
 The DataLogicLibrary is responsible for the simulation logic and uses various services to manage the flow and development of logic during runtime.
 The ValidationServiceLibrary contains a ValidationService that ensures no incorrect input is allowed from the user. The APIServiceLibrary contains a service that consumes the external randomuserapi and returns a response DTO to the main project.
