@@ -1,7 +1,8 @@
 # CarSimulatorApp
 ## 📃Description
 This is a simple car simulator application written in C# console. The app gives the user options to drive a car towards different cardinal directions, while simultaneously 
-managing the vehicles gas meter and the drivers energy value which deteriorates every time an action is performed. If any of these values hit zero the user will be adviced to either stop and gas or take a rest.  
+managing the vehicles gas meter and the drivers energy value which deteriorates every time an action is performed. If any of these values hit zero the user will be adviced to either stop and gas or take a rest.
+  
 The main purpose of this application is to demonstrate well structured C# code in regards to SRP (Single Responsibility Principle), and to implement valid tests of the simulations functionality. The written tests makes sure that the key 
 components of the applications logic is solid and that no runtime bugs or logical errors occurs. The application also consumes an external API called "Random User API", which imports a fictional user that the application uses as its driver.
 The driver will be replaced by a new driver each time the application re-starts.
